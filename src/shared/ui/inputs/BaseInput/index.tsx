@@ -9,7 +9,7 @@ interface Props {
 
 export const BaseInput = ({ icon, placeholder, className }: Props) => {
   return (
-    <div className={clsx("fit-content flex items-center gap-2", className)}>
+    <div className={clsx("flex w-fit items-center gap-2", className)}>
       {icon && icon}
       <input
         type="text"

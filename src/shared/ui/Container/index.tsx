@@ -1,7 +1,7 @@
 import React from "react";
 
 interface Props {
-  children: React.ReactNode | JSX.Element | string;
+  children: React.ReactNode | React.JSX.Element | string;
   maxWidth?: number;
 }
 

@@ -40,7 +40,7 @@ export const Header = ({ className }: Props) => {
   return (
     <header
       className={clsx(
-        "left-0 top-0 z-50 w-full bg-white px-[60px] xl:px-[30px] 2xl:px-[6%]",
+        "left-0 top-0 z-50 w-full bg-white px-[60px] xl:px-[30px] 2xl:px-[6%]", className,
         {
           fixed: fixed,
         },
@@ -70,10 +70,10 @@ export const Header = ({ className }: Props) => {
               Add Listing
             </button>
             <div className="flex items-center gap-2">
-              <span className="fit-content block cursor-pointer 2xl:hidden">
+              <span className="block w-fit cursor-pointer 2xl:hidden">
                 <HiDotsHorizontal className="h-[30px] w-[30px] duration-500 hover:fill-cyan" />
               </span>
-              <span className="fit-content block cursor-pointer xl:hidden">
+              <span className="block w-fit cursor-pointer xl:hidden">
                 <GiHamburgerMenu className="h-[40px] w-[40px]" />
               </span>
             </div>
