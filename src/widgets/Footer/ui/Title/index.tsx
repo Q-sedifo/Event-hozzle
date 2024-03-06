@@ -3,9 +3,5 @@ interface Props {
 }
 
 export const Title = ({ text }: Props) => {
-  return (
-    <div className="text-[20px] text-primary font-bold pb-5">
-      {text}
-    </div>
-  )
-}
+  return <div className="pb-5 text-[20px] font-bold text-primary">{text}</div>;
+};
