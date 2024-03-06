@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Logo } from "./ui/Logo";
 import { BaseInput } from "@/shared/ui/inputs/BaseInput";
+import { AuthorizationModal } from "@/shared/ui/modals/AuthorizationModal";
 import { NavList } from "./ui/NavList";
 import { IoIosSearch } from "react-icons/io";
 import { PiUserCircle } from "react-icons/pi";
@@ -16,6 +17,7 @@ interface Props {
 
 export const Header = ({ className }: Props) => {
   const [fixed, setFixed] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const header = useRef<HTMLElement | null>(null);
 
   const handleScroll = () => {
@@ -37,10 +39,11 @@ export const Header = ({ className }: Props) => {
     };
   }, []);
 
-  return (
+  return (<>
     <header
       className={clsx(
-        "left-0 top-0 z-50 w-full bg-white px-[60px] xl:px-[30px] 2xl:px-[6%]", className,
+        "left-0 top-0 z-50 w-full bg-white px-2 xl:px-[30px] 2xl:px-[6%]",
+        className,
         {
           fixed: fixed,
         },
@@ -59,7 +62,10 @@ export const Header = ({ className }: Props) => {
         <div className="flex flex-1 items-center justify-end gap-[50px] xl:justify-between">
           <NavList />
           <div className="flex items-center gap-10">
-            <button className="group relative hidden items-center gap-1 whitespace-nowrap text-[15px] transition-all duration-500 hover:text-cyan xl:flex">
+            <button 
+              className="group relative hidden items-center gap-1 whitespace-nowrap text-[15px] transition-all duration-500 hover:text-cyan xl:flex" 
+              onClick={() => setIsModalOpen(true)}
+            >
               <PiUserCircle className="h-[18px] w-[18px] fill-cyan" />
               Login / Register
               <span className="absolute -bottom-1 left-1/2 h-[1px] w-0 bg-cyan transition-all duration-500 group-hover:w-1/2"></span>
@@ -81,5 +87,9 @@ export const Header = ({ className }: Props) => {
         </div>
       </div>
     </header>
-  );
+    <AuthorizationModal 
+      isOpen={isModalOpen} 
+      close={() => setIsModalOpen(false)} 
+    />
+  </>);
 };

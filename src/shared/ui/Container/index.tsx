@@ -10,7 +10,7 @@ export const Container = ({ children, maxWidth }: Props) => {
 
   return (
     <div
-      className="w-full"
+      className="w-full px-2 md:px-[60px] xl:px-0"
       style={{ margin: "0 auto", maxWidth: `${maxWidth || BASE_MAX_WIDTH}px` }}
     >
       {children}

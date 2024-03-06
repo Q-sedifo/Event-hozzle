@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { Work_Sans } from "next/font/google";
 import { Header } from "@/widgets/Header";
+import { Footer } from "@/widgets/Footer";
 import "./globals.css";
 
 const WorkSans = Work_Sans({ subsets: ["latin"] });
@@ -21,6 +22,8 @@ export default function RootLayout({
       <body className={WorkSans.className}>
         <Header />
         <main>{children}</main>
+        <Footer />
+        <div id="modal"></div>
       </body>
     </html>
   );
