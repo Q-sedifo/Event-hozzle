@@ -14,17 +14,9 @@ export const RegisterForm = () => {
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) =>
-          console.log("Register", values)
-        }
+        onSubmit={(values) => console.log("Register", values)}
       >
-        {({
-          values,
-          errors,
-          touched,
-          setFieldValue,
-          handleSubmit,
-        }) => (
+        {({ values, errors, touched, setFieldValue, handleSubmit }) => (
           <form onSubmit={handleSubmit} className="flex w-full flex-col gap-5">
             {errors.username && touched.username && errors.username}
             <BaseInput
