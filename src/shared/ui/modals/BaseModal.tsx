@@ -30,9 +30,9 @@ export const BaseModal = ({
 
   return isOpen
     ? createPortal(
-        <div className="fixed left-0 top-0 z-[100] flex h-[100vh] w-full items-center justify-center overflow-auto bg-[#000000]/50">
+        <div className="fixed left-0 top-0 z-[100] flex h-[100vh] w-full items-center justify-center overflow-auto bg-[#000000]/70">
           <div
-            className={`relative w-fit max-w-full border border-cyan bg-white p-10 shadow-[5px_5px_0px_0px_#82e0e0] ${className}`}
+            className={`relative w-fit max-w-full border border-cyan bg-white p-5 shadow-[5px_5px_0px_0px_#82e0e0] md:p-10 ${className}`}
           >
             <div
               className="absolute -right-5 -top-5 w-fit cursor-pointer rounded-full bg-red-500 p-2 text-white"

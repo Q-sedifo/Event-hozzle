@@ -1,20 +1,34 @@
+"use client";
 import React from "react";
 import clsx from "clsx";
 
 interface Props {
-  icon: React.ReactNode;
+  value?: string;
+  onChange: (data: string) => void;
+  icon?: React.ReactNode;
   placeholder: string;
   className?: string;
+  type?: "text" | "password";
 }
 
-export const BaseInput = ({ icon, placeholder, className }: Props) => {
+export const BaseInput = ({
+  icon,
+  placeholder,
+  className,
+  type,
+  value,
+  onChange,
+}: Props) => {
   return (
     <div className={clsx("flex w-fit items-center gap-2", className)}>
       {icon && icon}
       <input
-        type="text"
+        value={value}
+        type={type}
         placeholder={placeholder}
         className="w-full border-none outline-none"
+        onChange={(e) => onChange(e.target.value)}
+        autoComplete="off"
       />
     </div>
   );

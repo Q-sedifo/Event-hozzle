@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import { Work_Sans } from "next/font/google";
+import { Providers } from "@/app/(providers)";
 import { Header } from "@/widgets/Header";
 import { Footer } from "@/widgets/Footer";
 import "./globals.css";
@@ -19,11 +20,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.png" />
+      </head>
       <body className={WorkSans.className}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <div id="modal"></div>
+        <Providers>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+          <div id="modal"></div>
+        </Providers>
       </body>
     </html>
   );

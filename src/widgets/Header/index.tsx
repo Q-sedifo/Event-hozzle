@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { Logo } from "./ui/Logo";
 import { BaseInput } from "@/shared/ui/inputs/BaseInput";
 import { AuthorizationModal } from "@/shared/ui/modals/AuthorizationModal";
+import { useSession } from "next-auth/react";
 import { NavList } from "./ui/NavList";
 import { IoIosSearch } from "react-icons/io";
 import { PiUserCircle } from "react-icons/pi";
@@ -19,6 +20,9 @@ export const Header = ({ className }: Props) => {
   const [fixed, setFixed] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const header = useRef<HTMLElement | null>(null);
+  const session = useSession();
+
+  console.log("session", session);
 
   const handleScroll = () => {
     if (!header.current) return;
@@ -58,6 +62,7 @@ export const Header = ({ className }: Props) => {
               icon={<IoIosSearch className="h-[20px] w-[20px] fill-cyan" />}
               placeholder="What are you looking for?"
               className="hidden w-[230px] border-b border-b-slate-400 py-1 pr-1 2xl:flex"
+              onChange={() => ""}
             />
           </div>
           <div className="flex flex-1 items-center justify-end gap-[50px] xl:justify-between">

@@ -7,7 +7,7 @@ import { TfiViewListAlt } from "react-icons/tfi";
 export const Search = () => {
   return (
     <div className="mt-10 flex flex-col items-stretch gap-3 rounded bg-white p-5 shadow-[5px_5px_0px_0px_#0ec6c6] xl:flex-row xl:gap-0 xl:p-0">
-      <div className="xl:border-r flex items-center border px-4 py-2 xl:border-b-0 xl:border-l-0 xl:border-t-0 xl:border-cyan">
+      <div className="flex items-center border px-4 py-2 xl:border-b-0 xl:border-l-0 xl:border-r xl:border-t-0 xl:border-cyan">
         <BaseInput
           icon={<IoIosSearch className="h-[25px] w-[25px] fill-gray-500" />}
           placeholder="What are you looking for?"
@@ -15,7 +15,7 @@ export const Search = () => {
         />
       </div>
       <div className="flex flex-col items-stretch gap-3 md:flex-row xl:gap-0">
-        <div className="xl:border-r flex flex-1 items-center border px-4 py-2 xl:border-b-0 xl:border-l-0 xl:border-t-0 xl:border-cyan">
+        <div className="flex flex-1 items-center border px-4 py-2 xl:border-b-0 xl:border-l-0 xl:border-r xl:border-t-0 xl:border-cyan">
           <BaseInput
             icon={<SlLocationPin className="h-[25px] w-[25px] fill-gray-500" />}
             placeholder="Location"
