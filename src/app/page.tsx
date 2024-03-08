@@ -93,7 +93,7 @@ export default function Home() {
           <div className="lg:flex">
             <div className="w-full pr-2 lg:w-[70%]">
               <div className="w-full overflow-x-auto">
-                <div className="flex flex-1 w-full text-[40px] font-bold">
+                <div className="flex w-full flex-1 text-[40px] font-bold">
                   <div className="w-full whitespace-nowrap">
                     Find Nearby <span className="text-cyan">Hotels</span>
                   </div>

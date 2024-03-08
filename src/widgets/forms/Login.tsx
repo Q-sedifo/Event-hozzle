@@ -15,21 +15,26 @@ export const LoginForm = () => {
   const [error, setError] = useState<null | string>(null);
 
   const handleSubmit = async (data: any, { setSubmitting }: any) => {
-    setSubmitting(true)
+    setSubmitting(true);
     await signIn("credentials", data).then((response) => {
-      setSubmitting(false)
-      console.log("LOGIN RESPONSE", response)
+      setSubmitting(false);
+      console.log("LOGIN RESPONSE", response);
     });
   };
 
   return (
     <>
-      <Formik initialValues={initialValues} validationSchema={loginSchema} validateOnChange={false} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={loginSchema}
+        validateOnChange={false}
+        onSubmit={handleSubmit}
+      >
         {({ values, errors, setFieldValue, handleSubmit, isSubmitting }) => (
           <form onSubmit={handleSubmit} className="flex w-full flex-col gap-5">
             {isSubmitting && "Loading..."}
             <div>
-              <BaseError error={errors.email}/>
+              <BaseError error={errors.email} />
               <BaseInput
                 placeholder="Username or email"
                 className="w-full rounded border p-3"
@@ -38,7 +43,7 @@ export const LoginForm = () => {
               />
             </div>
             <div>
-              <BaseError error={errors.password}/>
+              <BaseError error={errors.password} />
               <BaseInput
                 placeholder="Password"
                 type="password"

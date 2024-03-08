@@ -29,7 +29,7 @@ export const Header = ({ className }: Props) => {
       <header
         className={clsx(
           "sticky left-0 top-0 z-50 w-full bg-white px-2 xl:px-[30px] 2xl:px-[6%]",
-          className
+          className,
         )}
         ref={header}
       >
@@ -45,8 +45,10 @@ export const Header = ({ className }: Props) => {
           </div>
           <div className="flex flex-1 items-center justify-end gap-[50px] xl:justify-between">
             <NavList />
-            <div className="flex items-center gap-10 justify-between">
-              {session.data ? <ProfileBtn/> : (
+            <div className="flex items-center justify-between gap-10">
+              {session.data ? (
+                <ProfileBtn />
+              ) : (
                 <button
                   className="group relative hidden items-center gap-1 whitespace-nowrap text-[15px] transition-all duration-500 hover:text-cyan xl:flex"
                   onClick={() => setIsModalOpen(true)}

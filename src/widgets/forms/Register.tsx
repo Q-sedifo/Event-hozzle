@@ -14,8 +14,8 @@ const initialValues = {
 
 export const RegisterForm = () => {
   const handleSubmit = async (data: any) => {
-    await signIn("sign-up", data)
-  }
+    await signIn("sign-up", data);
+  };
 
   return (
     <>
@@ -28,7 +28,7 @@ export const RegisterForm = () => {
         {({ values, errors, touched, setFieldValue, handleSubmit }) => (
           <form onSubmit={handleSubmit} className="flex w-full flex-col gap-5">
             <div>
-              <BaseError error={errors.username}/>
+              <BaseError error={errors.username} />
               <BaseInput
                 placeholder="Username"
                 className="w-full rounded border p-3"
@@ -38,7 +38,7 @@ export const RegisterForm = () => {
             </div>
             {errors.email && touched.email && errors.email}
             <div>
-              <BaseError error={errors.email}/>
+              <BaseError error={errors.email} />
               <BaseInput
                 placeholder="Email"
                 className="w-full rounded border p-3"
@@ -47,7 +47,7 @@ export const RegisterForm = () => {
               />
             </div>
             <div>
-              <BaseError error={errors.password}/>
+              <BaseError error={errors.password} />
               <BaseInput
                 placeholder="Password"
                 type="password"
@@ -57,7 +57,7 @@ export const RegisterForm = () => {
               />
             </div>
             <div>
-              <BaseError error={errors.passwordConfirm}/>
+              <BaseError error={errors.passwordConfirm} />
               <BaseInput
                 placeholder="Confirm password"
                 type="password"
