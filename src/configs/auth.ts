@@ -5,6 +5,7 @@ import FacebookProvider from "next-auth/providers/facebook";
 export const authConfig: AuthOptions = {
   pages: {
     signIn: "/",
+    newUser: "/"
   },
   providers: [
     FacebookProvider({
@@ -16,11 +17,11 @@ export const authConfig: AuthOptions = {
       name: "Credentials",
       credentials: {
         email: {
-          label: "email:",
+          label: "Email:",
           type: "text",
         },
         password: {
-          label: "password:",
+          label: "Password:",
           type: "password",
         },
       },
@@ -29,6 +30,36 @@ export const authConfig: AuthOptions = {
 
         console.log("LOGIN", credentials);
         return credentials as any;
+      },
+    }),
+    Credentials({
+      name: "sign-up",
+      id: "sign-up",
+      credentials: {
+        email: {
+          label: "Email:",
+          type: "text",
+          placeholder: "your-email",
+        },
+        username: {
+          label: "Your name:",
+          type: "text",
+          placeholder: "Name",
+        },
+        password: {
+          label: "Password:",
+          type: "password",
+          placeholder: "password",
+        },
+        passwordConfirm: {
+          label: "Confirm password:",
+          type: "password",
+          placeholder: "Password",
+        },
+      },
+      authorize(credentials) {
+        console.log("SIGN UP", credentials)
+        return null;
       },
     }),
   ],

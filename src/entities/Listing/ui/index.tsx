@@ -2,9 +2,9 @@ import { HiOutlineBookmark } from "react-icons/hi";
 import { SlLocationPin } from "react-icons/sl";
 import { Estimate } from "@/shared/ui/inputs/Estimate";
 
-export const Event = () => {
+export const Listing = () => {
   return (
-    <div className="w-full cursor-pointer overflow-hidden rounded border border-cyan bg-white shadow-[5px_5px_0px_0px_#82e0e0] duration-500 hover:shadow-[5px_5px_0px_0px_#0ec6c6] md:w-[350px]">
+    <div className="w-full min-w-fit cursor-pointer overflow-hidden rounded border border-cyan bg-white shadow-[5px_5px_0px_0px_#82e0e0] duration-500 hover:shadow-[5px_5px_0px_0px_#0ec6c6] md:w-[350px]">
       <div className="h-[230px] bg-black"></div>
       <div className="relative flex flex-col gap-3 p-5">
         <span className="absolute -top-5 right-5 flex items-center gap-2 rounded-full bg-white p-2 text-[13px] font-semibold text-gray-500">

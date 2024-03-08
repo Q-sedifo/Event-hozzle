@@ -4,6 +4,7 @@ import { Work_Sans } from "next/font/google";
 import { Providers } from "@/app/(providers)";
 import { Header } from "@/widgets/Header";
 import { Footer } from "@/widgets/Footer";
+import { Loader } from "@/shared/ui/Loader"; 
 import "./globals.css";
 
 const WorkSans = Work_Sans({ subsets: ["latin"] });
@@ -21,10 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/favicon.ico" />
       </head>
       <body className={WorkSans.className}>
         <Providers>
+          <Loader/>
           <Header />
           <main>{children}</main>
           <Footer />

@@ -7,7 +7,7 @@ import FooterImage from "@/shared/assets/images/footer-image.png";
 
 export const Footer = () => {
   return (
-    <footer className="w-full bg-white">
+    <footer className="w-full bg-gray-100">
       <Container>
         <div className="grid grid-cols-1 gap-5 border-b border-gray-200 py-20 sm:grid-cols-2 lg:grid-cols-4">
           <div className="flex flex-col gap-2">
