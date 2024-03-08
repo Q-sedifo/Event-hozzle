@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { BaseInput } from "@/shared/ui/inputs/BaseInput";
 import { BaseDropdown } from "@/shared/ui/dropdowns/BaseDropdown";
 import { IoIosSearch } from "react-icons/io";

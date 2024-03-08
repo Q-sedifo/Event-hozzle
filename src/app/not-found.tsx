@@ -9,7 +9,7 @@ const NotFound = () => {
         </div>
       </Container>
     </div>
-  )
-} 
+  );
+};
 
 export default NotFound;
