@@ -1,3 +1,4 @@
+"use client"
 import { BaseInput } from "@/shared/ui/inputs/BaseInput";
 import { BaseDropdown } from "@/shared/ui/dropdowns/BaseDropdown";
 import { IoIosSearch } from "react-icons/io";
@@ -12,6 +13,7 @@ export const Search = () => {
           icon={<IoIosSearch className="h-[25px] w-[25px] fill-gray-500" />}
           placeholder="What are you looking for?"
           className="w-full py-1 pr-1 xl:w-[230px]"
+          onChange={() => ""}
         />
       </div>
       <div className="flex flex-col items-stretch gap-3 md:flex-row xl:gap-0">
@@ -20,6 +22,7 @@ export const Search = () => {
             icon={<SlLocationPin className="h-[25px] w-[25px] fill-gray-500" />}
             placeholder="Location"
             className="w-full py-1 pr-1"
+            onChange={() => ""}
           />
         </div>
         <div className="flex flex-1 items-center border px-5 py-3 xl:border-none">

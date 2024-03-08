@@ -5,16 +5,12 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { LoginForm } from "@/widgets/forms/Login";
 import { RegisterForm } from "@/widgets/forms/Register";
-import { useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 
 interface Props extends IBaseModal {}
 
 export const AuthorizationModal = (props: Props) => {
   const [isLogin, setIsLogin] = useState(true);
-  const searchParams = useSearchParams();
-
-  const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   return (
     <BaseModal {...props}>
@@ -54,7 +50,7 @@ export const AuthorizationModal = (props: Props) => {
           <div className="flex items-center gap-5 pt-5 font-bold text-white">
             <button
               className="flex w-full items-center justify-center gap-2 rounded bg-blue-800 p-3 transition-opacity duration-500 hover:opacity-70"
-              onClick={() => signIn("facebook", { callbackUrl })}
+              onClick={() => signIn("facebook")}
             >
               <FaFacebookF className="h-[20px] w-[20px]" />
               Facebook
