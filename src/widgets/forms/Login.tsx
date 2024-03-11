@@ -5,6 +5,7 @@ import { BaseButton } from "@/shared/ui/buttons/BaseButton";
 import { signIn, SignInResponse } from "next-auth/react";
 import { BaseError } from "@/shared/ui/errors/BaseError";
 import { loginSchema } from "@/shared/validation/auth/loginValidation";
+import { redirect } from "next/navigation";
 
 const initialValues = {
   email: "",
@@ -15,10 +16,15 @@ export const LoginForm = () => {
   const [error, setError] = useState<null | string>(null);
 
   const handleSubmit = async (data: any, { setSubmitting }: any) => {
+    data.redirect = false
     setSubmitting(true);
+
     await signIn("credentials", data).then((response) => {
       setSubmitting(false);
       console.log("LOGIN RESPONSE", response);
+      redirect("/")
+    }).catch((error) => {
+      setError("Incorrect email or password")
     });
   };
 
@@ -52,7 +58,8 @@ export const LoginForm = () => {
                 value={values.password}
               />
             </div>
-            <BaseButton text="Login now" type="submit" />
+            <BaseError error={error}/>
+            <BaseButton text="Login now" type="submit" variant="default" disabled={isSubmitting} />
           </form>
         )}
       </Formik>

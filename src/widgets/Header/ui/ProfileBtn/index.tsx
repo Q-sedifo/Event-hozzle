@@ -1,6 +1,11 @@
 import React, { useState } from "react";
-import { useSession, signOut } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { RiArrowDownSLine } from "react-icons/ri";
+import Cookies from "js-cookie";
+
+interface Props {
+  session: any;
+}
 
 // Icons
 import { BiLogOut, BiEnvelope } from "react-icons/bi";
@@ -15,9 +20,14 @@ const links = [
   { title: "Settings", icon: <MdOutlineSettings /> },
 ];
 
-export const ProfileBtn = () => {
-  const session = useSession();
+export const ProfileBtn = ({ session }: Props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const handleLogout = () => {
+    Cookies.remove("_auth_access_token")
+    Cookies.remove("_auth_refresh_token")
+    signOut()
+  }
 
   console.log("session", session);
 
@@ -57,7 +67,7 @@ export const ProfileBtn = () => {
           </div>
           <button
             className="flex w-full items-center gap-3 border-t border-gray-200 px-5 py-3 text-[14px] font-medium text-red-500"
-            onClick={() => signOut()}
+            onClick={() => handleLogout()}
           >
             <BiLogOut />
             Logout

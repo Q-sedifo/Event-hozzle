@@ -4,6 +4,7 @@ import { BaseButton } from "@/shared/ui/buttons/BaseButton";
 import { signIn, SignInResponse } from "next-auth/react";
 import { BaseError } from "@/shared/ui/errors/BaseError";
 import { registerSchema } from "@/shared/validation/auth/registerValidation";
+import { redirect } from "next/navigation";
 
 const initialValues = {
   username: "",
@@ -13,8 +14,14 @@ const initialValues = {
 };
 
 export const RegisterForm = () => {
-  const handleSubmit = async (data: any) => {
-    await signIn("sign-up", data);
+  const handleSubmit = async (data: any, { setSubmitting }: any) => {
+    data.redirect = false;
+    setSubmitting(true);
+
+    await signIn("sign-up", data).then(resp => {
+      setSubmitting(false)
+      redirect("/")
+    });
   };
 
   return (
@@ -25,8 +32,9 @@ export const RegisterForm = () => {
         validateOnChange={false}
         onSubmit={handleSubmit}
       >
-        {({ values, errors, touched, setFieldValue, handleSubmit }) => (
+        {({ values, errors, touched, setFieldValue, handleSubmit, isSubmitting }) => (
           <form onSubmit={handleSubmit} className="flex w-full flex-col gap-5">
+            {isSubmitting && <>Loading...</>}
             <div>
               <BaseError error={errors.username} />
               <BaseInput
@@ -66,7 +74,7 @@ export const RegisterForm = () => {
                 value={values.passwordConfirm}
               />
             </div>
-            <BaseButton type="submit" text="Register now" />
+            <BaseButton type="submit" text="Register now" variant="default" disabled={isSubmitting} />
           </form>
         )}
       </Formik>

@@ -1,6 +1,9 @@
 "use client";
 import { BaseInput } from "@/shared/ui/inputs/BaseInput";
+import { BaseButton } from "@/shared/ui/buttons/BaseButton";
 import { BaseDropdown } from "@/shared/ui/dropdowns/BaseDropdown";
+
+// Icons
 import { IoIosSearch } from "react-icons/io";
 import { SlLocationPin } from "react-icons/sl";
 import { TfiViewListAlt } from "react-icons/tfi";
@@ -36,9 +39,7 @@ export const Search = () => {
         </div>
       </div>
       <div className="flex w-full items-center justify-center py-2 xl:w-fit xl:pr-2">
-        <button className="w-full whitespace-nowrap rounded bg-cyan px-8 py-3 text-[15px] font-bold text-white duration-500 hover:bg-slate-800 md:w-fit xl:px-5 xl:py-3">
-          Search Now
-        </button>
+        <BaseButton text="Search now" type="button" variant="default"/>
       </div>
     </div>
   );

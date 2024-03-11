@@ -2,6 +2,7 @@
 import { useState, useRef } from "react";
 import { Logo } from "./ui/Logo";
 import { BaseInput } from "@/shared/ui/inputs/BaseInput";
+import { BaseButton } from "@/shared/ui/buttons/BaseButton";
 import { AuthorizationModal } from "@/shared/ui/modals/AuthorizationModal";
 import { useSession } from "next-auth/react";
 import { NavList } from "./ui/NavList";
@@ -47,7 +48,7 @@ export const Header = ({ className }: Props) => {
             <NavList />
             <div className="flex items-center justify-between gap-10">
               {session.data ? (
-                <ProfileBtn />
+                <ProfileBtn session={session} />
               ) : (
                 <button
                   className="group relative hidden items-center gap-1 whitespace-nowrap text-[15px] transition-all duration-500 hover:text-cyan xl:flex"
@@ -59,10 +60,13 @@ export const Header = ({ className }: Props) => {
                   <span className="absolute -bottom-1 right-1/2 h-[1px] w-0 bg-cyan transition-all duration-500 group-hover:w-1/2"></span>
                 </button>
               )}
-              <button className="hidden items-center gap-2 whitespace-nowrap rounded-full border border-cyan fill-cyan px-[30px] py-[11px] font-medium text-cyan duration-500 hover:bg-cyan hover:text-white 2xl:flex">
-                <IoAddOutline className="h-[25px] w-[25px]" />
-                Add Listing
-              </button>
+              <BaseButton 
+                text="Add Listing" 
+                variant="rounded" 
+                type="button" 
+                icon={<IoAddOutline className="h-[25px] w-[25px]" />}
+                className="hidden 2xl:flex"
+              />
               <div className="flex items-center gap-2 2xl:hidden">
                 <span className="block w-fit cursor-pointer 2xl:hidden">
                   <HiDotsHorizontal className="h-[30px] w-[30px] duration-500 hover:fill-cyan" />

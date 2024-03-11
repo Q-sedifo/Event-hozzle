@@ -1,6 +1,6 @@
 interface Props {
   className?: string;
-  error: string | undefined;
+  error: null | string | undefined;
 }
 
 export const BaseError = ({ error, className }: Props) => {

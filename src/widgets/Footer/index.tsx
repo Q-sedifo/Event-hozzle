@@ -44,12 +44,12 @@ export const Footer = () => {
             <Title text="Languages" />
             <FormDropdown
               placeholder="English"
-              className="border-none font-bold text-cyan"
+              className="border-none !bg-gray-200 font-bold text-cyan"
             />
             <Title text="Countries" />
             <FormDropdown
               placeholder="United States"
-              className="border-none font-bold text-cyan"
+              className="border-none !bg-gray-200 font-bold text-cyan"
             />
           </div>
         </div>

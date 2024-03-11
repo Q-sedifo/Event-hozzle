@@ -1,8 +1,13 @@
+"use client";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { Container } from "@/shared/ui/Container";
 import img from "@/shared/assets/images/banner-img1.png";
 import { Search } from "@/widgets/Search";
 import { Listing } from "@/entities/Listing/ui";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { serverApi } from "@/shared/api/serverApi";
 
 // Icons
 import { GiKnifeFork } from "react-icons/gi";
@@ -86,6 +91,20 @@ const Categories = [
 ];
 
 export default function Home() {
+
+  React.useEffect(() => {
+    fetchUser()
+  }, [])
+
+  const fetchUser = async () => {
+    try {
+      const resp = await serverApi.get("/users/getMe")
+      console.log("RESP", resp)
+    } catch(error) {
+      console.log("RESP ERROR", error)
+    }
+  }
+
   return (
     <div>
       <div className="relative bg-gray-100 pt-[100px]">
@@ -93,23 +112,37 @@ export default function Home() {
           <div className="lg:flex">
             <div className="w-full pr-2 lg:w-[70%]">
               <div className="w-full overflow-x-auto">
-                <div className="flex w-full flex-1 text-[40px] font-bold">
-                  <div className="w-full whitespace-nowrap">
-                    Find Nearby <span className="text-cyan">Hotels</span>
-                  </div>
-                  <div className="w-full whitespace-nowrap">
-                    Find Nearby <span className="text-cyan">Restaurants</span>
-                  </div>
-                  <div className="w-full whitespace-nowrap">
-                    Find Nearby <span className="text-cyan">Beauty</span>
-                  </div>
-                  <div className="w-full whitespace-nowrap">
-                    Find Nearby <span className="text-cyan">Fitness</span>
-                  </div>
-                  <div className="w-full whitespace-nowrap">
-                    Find Nearby <span className="text-cyan">Shopping</span>
-                  </div>
-                </div>
+                <Swiper
+                  slidesPerView={1}
+                  spaceBetween={50}
+                  className="flex w-full flex-1 text-[40px] font-bold"
+                >
+                  <SwiperSlide>
+                    <div className="w-full whitespace-nowrap">
+                      Find Nearby <span className="text-cyan">Hotels</span>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <div className="w-full whitespace-nowrap">
+                      Find Nearby <span className="text-cyan">Restaurants</span>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <div className="w-full whitespace-nowrap">
+                      Find Nearby <span className="text-cyan">Beauty</span>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <div className="w-full whitespace-nowrap">
+                      Find Nearby <span className="text-cyan">Fitness</span>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <div className="w-full whitespace-nowrap">
+                      Find Nearby <span className="text-cyan">Shopping</span>
+                    </div>
+                  </SwiperSlide>
+                </Swiper>
               </div>
               <p className="pt-5 text-center text-[18px] text-gray-600 lg:text-left">
                 Expolore top-rated attractions, activities and more...
