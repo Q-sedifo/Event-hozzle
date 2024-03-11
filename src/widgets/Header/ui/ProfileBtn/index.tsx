@@ -24,10 +24,10 @@ export const ProfileBtn = ({ session }: Props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleLogout = () => {
-    Cookies.remove("_auth_access_token")
-    Cookies.remove("_auth_refresh_token")
-    signOut()
-  }
+    Cookies.remove("_auth_access_token");
+    Cookies.remove("_auth_refresh_token");
+    signOut();
+  };
 
   console.log("session", session);
 

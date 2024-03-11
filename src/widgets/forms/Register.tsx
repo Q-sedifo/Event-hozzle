@@ -18,9 +18,9 @@ export const RegisterForm = () => {
     data.redirect = false;
     setSubmitting(true);
 
-    await signIn("sign-up", data).then(resp => {
-      setSubmitting(false)
-      redirect("/")
+    await signIn("sign-up", data).then((resp) => {
+      setSubmitting(false);
+      redirect("/");
     });
   };
 
@@ -32,7 +32,14 @@ export const RegisterForm = () => {
         validateOnChange={false}
         onSubmit={handleSubmit}
       >
-        {({ values, errors, touched, setFieldValue, handleSubmit, isSubmitting }) => (
+        {({
+          values,
+          errors,
+          touched,
+          setFieldValue,
+          handleSubmit,
+          isSubmitting,
+        }) => (
           <form onSubmit={handleSubmit} className="flex w-full flex-col gap-5">
             {isSubmitting && <>Loading...</>}
             <div>
@@ -74,7 +81,12 @@ export const RegisterForm = () => {
                 value={values.passwordConfirm}
               />
             </div>
-            <BaseButton type="submit" text="Register now" variant="default" disabled={isSubmitting} />
+            <BaseButton
+              type="submit"
+              text="Register now"
+              variant="default"
+              disabled={isSubmitting}
+            />
           </form>
         )}
       </Formik>

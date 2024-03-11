@@ -60,10 +60,10 @@ export const Header = ({ className }: Props) => {
                   <span className="absolute -bottom-1 right-1/2 h-[1px] w-0 bg-cyan transition-all duration-500 group-hover:w-1/2"></span>
                 </button>
               )}
-              <BaseButton 
-                text="Add Listing" 
-                variant="rounded" 
-                type="button" 
+              <BaseButton
+                text="Add Listing"
+                variant="rounded"
+                type="button"
                 icon={<IoAddOutline className="h-[25px] w-[25px]" />}
                 className="hidden 2xl:flex"
               />

@@ -5,8 +5,8 @@ import { Container } from "@/shared/ui/Container";
 import img from "@/shared/assets/images/banner-img1.png";
 import { Search } from "@/widgets/Search";
 import { Listing } from "@/entities/Listing/ui";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 import { serverApi } from "@/shared/api/serverApi";
 
 // Icons
@@ -91,19 +91,18 @@ const Categories = [
 ];
 
 export default function Home() {
-
   React.useEffect(() => {
-    fetchUser()
-  }, [])
+    fetchUser();
+  }, []);
 
   const fetchUser = async () => {
     try {
-      const resp = await serverApi.get("/users/getMe")
-      console.log("RESP", resp)
-    } catch(error) {
-      console.log("RESP ERROR", error)
+      const resp = await serverApi.get("/users/getMe");
+      console.log("RESP", resp);
+    } catch (error) {
+      console.log("RESP ERROR", error);
     }
-  }
+  };
 
   return (
     <div>

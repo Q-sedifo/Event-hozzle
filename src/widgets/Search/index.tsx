@@ -39,7 +39,7 @@ export const Search = () => {
         </div>
       </div>
       <div className="flex w-full items-center justify-center py-2 xl:w-fit xl:pr-2">
-        <BaseButton text="Search now" type="button" variant="default"/>
+        <BaseButton text="Search now" type="button" variant="default" />
       </div>
     </div>
   );

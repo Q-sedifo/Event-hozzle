@@ -11,10 +11,10 @@ export const Listing = () => {
     <div className="w-full min-w-fit overflow-hidden rounded border border-cyan bg-white shadow-[5px_5px_0px_0px_#82e0e0] duration-500 hover:shadow-[5px_5px_0px_0px_#0ec6c6] md:w-[350px]">
       <div className="relative h-[230px] bg-gray-200">
         <span className="absolute left-3 top-3 cursor-pointer rounded-full bg-black/50 p-2 text-white duration-500 hover:bg-cyan">
-          <IoRestaurantOutline className="h-[20px] w-[20px]"/>
+          <IoRestaurantOutline className="h-[20px] w-[20px]" />
         </span>
         <span className="absolute right-3 top-3 cursor-pointer rounded-full bg-black/50 p-2 text-white duration-500 hover:bg-cyan">
-          <IoMdHeartEmpty className="h-[20px] w-[20px]"/>
+          <IoMdHeartEmpty className="h-[20px] w-[20px]" />
         </span>
       </div>
       <div className="relative flex flex-col gap-3 p-5">
