@@ -8,6 +8,15 @@ import { IoMdHeartEmpty } from "react-icons/io";
 import { PiPhoneCallBold } from "react-icons/pi";
 import { MdOutlineAccessTime } from "react-icons/md";
 import { GrLocation } from "react-icons/gr";
+import { IoCheckmarkSharp } from "react-icons/io5";
+import { TbWorld } from "react-icons/tb";
+import { IoTrailSignOutline } from "react-icons/io5";
+import { FaFacebookF } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { FaLinkedinIn } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+
+const Amenities = ["Parking Street", "Vegan Options", "Kids Activities Nearby", "Accepts Apple Pay", "Accepts Google Pay", "Wheelchair Accessible"]
 
 const Listing = () => {
   return (
@@ -63,6 +72,99 @@ const Listing = () => {
                     <span className="text-[15px] text-cyan">New York, USA</span>
                   </span>
                 </span>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </div>
+      <div>
+        <Container>
+          <div className="flex flex-col gap-10 py-20 xl:flex-row">
+            <div className="flex-1">
+              <section>
+                <h3 className="text-[18px] font-bold text-primary md:text-[22px]">Chipotle Mexican Grill</h3>
+                <p className="py-5 text-[13px] md:text-[15px]">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
+                </p>
+              </section>
+              <section>
+                <h3 className="text-[18px] font-bold text-primary md:text-[22px]">Amenities</h3>
+                <div className="flex flex-wrap items-center gap-5 py-5">
+                  {Amenities.map((item, index) => (
+                    <span key={index} className="group flex gap-2">
+                      <span className="rounded-full bg-gray-200 p-2 duration-500 group-hover:bg-cyan group-hover:text-white"><IoCheckmarkSharp/></span>
+                      <span>{item}</span>
+                    </span>
+                  ))}
+                </div>  
+              </section>
+              <section>
+                <h3 className="text-[18px] font-bold text-primary md:text-[22px]">Gallery</h3>
+                <div className="flex items-center justify-between gap-5 py-5">
+                  {[1, 2, 3].map((item, index) => (
+                    <div key={index} className="h-[150px] w-[230px] bg-cyan"/>
+                  ))}
+                </div>  
+              </section>
+              <section>
+                <h3 className="text-[18px] font-bold text-primary md:text-[22px]">Pricing</h3>
+                <div className="flex flex-col items-center justify-between gap-5 py-5">
+                  {[1, 2, 3, 4, 5, 6].map((item, index) => (
+                    <div key={index} className="md:[text-16px] flex w-full items-center justify-between bg-gray-100 p-3 text-[14px] font-bold shadow-[5px_5px_0px_0px_#dedede] duration-500 hover:shadow-[5px_5px_0px_0px_#0ec6c6]">
+                      <span className="text-gray-500">Pizza</span>
+                      <span className="text-primary">$15</span>
+                    </div>
+                  ))}
+                </div>  
+              </section>
+            </div>
+            <div className="flex w-full flex-col gap-10 md:w-[386px]">
+              <div className="rounded border bg-gray-100 p-5">
+                <h3 className="text-[17px] font-bold text-primary md:text-[20px]">Booking Online</h3>
+                <button className="my-5 w-full bg-cyan p-4 text-center text-[15px] font-bold text-white shadow-[5px_5px_0px_0px_#82e0e0]">
+                  Book now
+                </button>
+                <p className="text-[15px] text-gray-500">By Booking.com</p>
+              </div>
+              <div className="rounded border bg-gray-100 p-5">
+                <h3 className="mb-5 text-[17px] font-bold text-primary md:text-[20px]">Contact Details</h3>
+                <div className="flex items-center gap-3 border-b border-t py-2">
+                  <TbWorld className="h-[20px] w-[20px]"/>
+                  <span className="text-cyan">www.indice.com</span>
+                </div>
+                <div className="flex items-center gap-3 border-b border-t py-2">
+                  <PiPhoneCallBold className="h-[20px] w-[20px]"/>
+                  <span>(+212) 279-1456</span>
+                </div>
+                <div className="flex items-center gap-3 border-b border-t py-2">
+                  <IoTrailSignOutline className="h-[20px] w-[20px]"/>
+                  <span className="text-cyan">Get Directions</span>
+                </div>
+                <div className="flex items-center gap-3 border-b border-t py-2">
+                  <GrLocation className="h-[20px] w-[20px]"/>
+                  <span>New York, USA</span>
+                </div>
+              </div>
+              <div className="rounded border bg-gray-100 p-5">
+                <h3 className="text-[17px] font-bold text-primary md:text-[20px]">Hosted By</h3>
+                <div className="flex items-center gap-3">
+                  <div className="rounded-full bg-cyan p-6"/>
+                  <div className="my-5 flex flex-col justify-between">
+                    <span className="text-[16px] font-semibold duration-500 hover:text-cyan">John Smith</span>
+                    <span className="text-[14px] text-gray-500">20 Places Hosted</span>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between border-t py-5">
+                  <span className="cursor-pointer font-bold text-cyan duration-500 hover:text-primary">View Profile</span>
+                  <span className="flex items-center gap-2">
+                    <span className="cursor-pointer rounded bg-gray-200 p-3 duration-500 hover:bg-cyan hover:text-white"><FaFacebookF/></span>
+                    <span className="cursor-pointer rounded bg-gray-200 p-3 duration-500 hover:bg-cyan hover:text-white"><FaTwitter/></span>
+                    <span className="cursor-pointer rounded bg-gray-200 p-3 duration-500 hover:bg-cyan hover:text-white"><FaLinkedinIn/></span>
+                    <span className="cursor-pointer rounded bg-gray-200 p-3 duration-500 hover:bg-cyan hover:text-white"><FaInstagram/></span>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
