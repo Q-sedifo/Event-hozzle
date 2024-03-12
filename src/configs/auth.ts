@@ -35,8 +35,8 @@ export const authConfig: AuthOptions = {
           console.log("LOGIN RESP", resp);
           return false as any;
           // return { ok: true, user:  }
-        } catch(error) {
-          return { ok: false }
+        } catch (error) {
+          return { ok: false };
         }
         // return credentials as any;
       },

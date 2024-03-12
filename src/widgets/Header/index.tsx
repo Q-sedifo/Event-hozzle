@@ -36,7 +36,7 @@ export const Header = ({ className }: Props) => {
         <div className="flex items-center gap-[50px] py-5">
           <div className="flex items-center gap-[50px]">
             <Logo />
-            <SearchInput className="hidden 2xl:flex"/>
+            <SearchInput className="hidden 2xl:flex" />
           </div>
           <div className="flex flex-1 items-center justify-end gap-[50px] xl:justify-between">
             <NavList />
@@ -56,14 +56,17 @@ export const Header = ({ className }: Props) => {
               )}
               <AddListingBtn className="hidden 2xl:flex" />
               <div className="flex items-center gap-2 2xl:hidden">
-                <span className="block w-fit cursor-pointer relative 2xl:hidden">
+                <span className="relative block w-fit cursor-pointer 2xl:hidden">
                   {isMobileToolsOpen && (
-                    <div className="flex flex-col gap-5 absolute top-[105%] right-0 bg-white w-[320px] h-fit p-5 pt-10 2xl:hidden">
-                      <SearchInput className="flex w-full"/>
-                      <AddListingBtn className="w-full flex justify-center"/>
+                    <div className="absolute right-0 top-[105%] flex h-fit w-[320px] flex-col gap-5 bg-white p-5 pt-10 2xl:hidden">
+                      <SearchInput className="flex w-full" />
+                      <AddListingBtn className="flex w-full justify-center" />
                     </div>
                   )}
-                  <HiDotsHorizontal className="h-[30px] w-[30px] duration-500 hover:fill-cyan" onClick={() => setIsMobileToolsOpen(prev => !prev)}/>
+                  <HiDotsHorizontal
+                    className="h-[30px] w-[30px] duration-500 hover:fill-cyan"
+                    onClick={() => setIsMobileToolsOpen((prev) => !prev)}
+                  />
                 </span>
                 <span className="block w-fit cursor-pointer xl:hidden">
                   <GiHamburgerMenu className="h-[40px] w-[40px]" />

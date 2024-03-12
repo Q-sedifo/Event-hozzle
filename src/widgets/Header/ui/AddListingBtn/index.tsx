@@ -14,5 +14,5 @@ export const AddListingBtn = ({ className }: Props) => {
       icon={<IoAddOutline className="h-[25px] w-[25px]" />}
       className={className}
     />
-  )
-}
+  );
+};

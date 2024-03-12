@@ -14,5 +14,5 @@ export const SearchInput = ({ onChange, className }: Props) => {
       className={`w-[230px] border-b border-b-slate-400 py-1 pr-1 ${className}`}
       onChange={() => ""}
     />
-  )
-}
+  );
+};
