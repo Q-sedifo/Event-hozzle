@@ -1,8 +1,8 @@
 "use client";
 import { useState, useRef } from "react";
 import { Logo } from "./ui/Logo";
-import { BaseInput } from "@/shared/ui/inputs/BaseInput";
-import { BaseButton } from "@/shared/ui/buttons/BaseButton";
+import { SearchInput } from "./ui/Search";
+import { AddListingBtn } from "./ui/AddListingBtn";
 import { AuthorizationModal } from "@/shared/ui/modals/AuthorizationModal";
 import { useSession } from "next-auth/react";
 import { NavList } from "./ui/NavList";
@@ -10,10 +10,8 @@ import { ProfileBtn } from "./ui/ProfileBtn";
 import clsx from "clsx";
 
 // Icons
-import { IoIosSearch } from "react-icons/io";
 import { PiUserCircle } from "react-icons/pi";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { IoAddOutline } from "react-icons/io5";
 import { HiDotsHorizontal } from "react-icons/hi";
 
 interface Props {
@@ -22,6 +20,7 @@ interface Props {
 
 export const Header = ({ className }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMobileToolsOpen, setIsMobileToolsOpen] = useState<boolean>(false);
   const header = useRef<HTMLElement | null>(null);
   const session = useSession();
 
@@ -37,12 +36,7 @@ export const Header = ({ className }: Props) => {
         <div className="flex items-center gap-[50px] py-5">
           <div className="flex items-center gap-[50px]">
             <Logo />
-            <BaseInput
-              icon={<IoIosSearch className="h-[20px] w-[20px] fill-cyan" />}
-              placeholder="What are you looking for?"
-              className="hidden w-[230px] border-b border-b-slate-400 py-1 pr-1 2xl:flex"
-              onChange={() => ""}
-            />
+            <SearchInput className="hidden 2xl:flex"/>
           </div>
           <div className="flex flex-1 items-center justify-end gap-[50px] xl:justify-between">
             <NavList />
@@ -60,16 +54,16 @@ export const Header = ({ className }: Props) => {
                   <span className="absolute -bottom-1 right-1/2 h-[1px] w-0 bg-cyan transition-all duration-500 group-hover:w-1/2"></span>
                 </button>
               )}
-              <BaseButton
-                text="Add Listing"
-                variant="rounded"
-                type="button"
-                icon={<IoAddOutline className="h-[25px] w-[25px]" />}
-                className="hidden 2xl:flex"
-              />
+              <AddListingBtn className="hidden 2xl:flex" />
               <div className="flex items-center gap-2 2xl:hidden">
-                <span className="block w-fit cursor-pointer 2xl:hidden">
-                  <HiDotsHorizontal className="h-[30px] w-[30px] duration-500 hover:fill-cyan" />
+                <span className="block w-fit cursor-pointer relative 2xl:hidden">
+                  {isMobileToolsOpen && (
+                    <div className="flex flex-col gap-5 absolute top-[105%] right-0 bg-white w-[320px] h-fit p-5 pt-10 2xl:hidden">
+                      <SearchInput className="flex w-full"/>
+                      <AddListingBtn className="w-full flex justify-center"/>
+                    </div>
+                  )}
+                  <HiDotsHorizontal className="h-[30px] w-[30px] duration-500 hover:fill-cyan" onClick={() => setIsMobileToolsOpen(prev => !prev)}/>
                 </span>
                 <span className="block w-fit cursor-pointer xl:hidden">
                   <GiHamburgerMenu className="h-[40px] w-[40px]" />

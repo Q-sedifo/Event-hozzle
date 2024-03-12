@@ -30,10 +30,14 @@ export const authConfig: AuthOptions = {
       authorize: async (credentials) => {
         if (!credentials?.email || !credentials?.password) return null;
 
-        const resp = await serverApi.post("/auth/login", credentials);
-
-        console.log("LOGIN RESP", resp);
-        return resp as any;
+        try {
+          const resp = await serverApi.post("/auth/login", credentials);
+          console.log("LOGIN RESP", resp);
+          return false as any;
+          // return { ok: true, user:  }
+        } catch(error) {
+          return { ok: false }
+        }
         // return credentials as any;
       },
     }),
