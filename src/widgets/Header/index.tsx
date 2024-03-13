@@ -58,7 +58,7 @@ export const Header = ({ className }: Props) => {
               <div className="flex items-center gap-2 2xl:hidden">
                 <span className="relative block w-fit cursor-pointer 2xl:hidden">
                   {isMobileToolsOpen && (
-                    <div className="absolute right-0 top-[105%] flex h-fit w-[320px] flex-col gap-5 bg-white p-5 pt-10 2xl:hidden">
+                    <div className="absolute right-0 top-[105%] flex h-fit w-[320px] flex-col gap-5 bg-white shadow-lg p-5 pt-10 2xl:hidden">
                       <SearchInput className="flex w-full" />
                       <AddListingBtn className="flex w-full justify-center" />
                     </div>

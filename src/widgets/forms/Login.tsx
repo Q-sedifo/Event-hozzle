@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Formik } from "formik";
 import { BaseInput } from "@/shared/ui/inputs/BaseInput";
 import { BaseButton } from "@/shared/ui/buttons/BaseButton";
-import { signIn, SignInResponse } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { BaseError } from "@/shared/ui/errors/BaseError";
 import { loginSchema } from "@/shared/validation/auth/loginValidation";
 import { redirect } from "next/navigation";
