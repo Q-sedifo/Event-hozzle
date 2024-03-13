@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Formik } from "formik";
 import { BaseInput } from "@/shared/ui/inputs/BaseInput";
 import { BaseTextarea } from "@/shared/ui/textareas/BaseTextarea";
@@ -17,20 +17,17 @@ const initialValues = {
   location: 0,
   checkIn: 0,
   communication: 0,
-  value: 0
-}
+  value: 0,
+};
 
 export const CommentForm = () => {
   const handleSubmit = (values: any) => {
-    console.log("Comment", values)
-  }
+    console.log("Comment", values);
+  };
 
   return (
     <>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-      >
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ values, errors, setFieldValue, handleSubmit, isSubmitting }) => (
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <div></div>
@@ -40,7 +37,7 @@ export const CommentForm = () => {
                 <BaseInput
                   placeholder="Name"
                   type="text"
-                  className="w-full rounded border p-3 bg-white shadow-md"
+                  className="w-full rounded border bg-white p-3 shadow-md"
                   onChange={(data) => setFieldValue("name", data)}
                   value={values.name}
                 />
@@ -50,36 +47,36 @@ export const CommentForm = () => {
                 <BaseInput
                   placeholder="Email"
                   type="text"
-                  className="w-full rounded border p-3 bg-white shadow-md"
+                  className="w-full rounded border bg-white p-3 shadow-md"
                   onChange={(data) => setFieldValue("email", data)}
                   value={values.email}
                 />
               </div>
             </div>
             <div>
-              <BaseTextarea 
-                placeholder="Your review" 
-                className="w-full h-[150px] rounded border p-3 bg-white shadow-md" 
+              <BaseTextarea
+                placeholder="Your review"
+                className="h-[150px] w-full rounded border bg-white p-3 shadow-md"
               />
             </div>
             <div className="flex items-center gap-4">
-              <BaseCheckbox 
-                value={values.saveData} 
+              <BaseCheckbox
+                value={values.saveData}
                 onChange={(data: boolean) => setFieldValue("saveData", data)}
                 label="Save my name, email, and website in this browser for the next time I comment"
               />
             </div>
             <div>
-              <BaseButton 
-                text="Submit" 
-                variant="rounded" 
-                type="submit" 
-                className="bg-cyan text-white px-10 font-bold"
+              <BaseButton
+                text="Submit"
+                variant="rounded"
+                type="submit"
+                className="bg-cyan px-10 font-bold text-white"
               />
             </div>
           </form>
         )}
       </Formik>
     </>
-  )
-}
+  );
+};

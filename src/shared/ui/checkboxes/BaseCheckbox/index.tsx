@@ -8,17 +8,18 @@ interface Props {
 
 export const BaseCheckbox = ({ value, label, onChange }: Props) => {
   return (
-    <div className="flex items-center gap-4 cursor-pointer" onClick={() => onChange(!value)}>
-      <div className="w-fit h-fit p-1 border border-cyan cursor-pointer rounded">
-        <span className={clsx("block w-[8px] h-[8px] bg-cyan duration-300", {
-          "bg-white": value === false
-        })}/>
+    <div
+      className="flex cursor-pointer items-center gap-4"
+      onClick={() => onChange(!value)}
+    >
+      <div className="h-fit w-fit cursor-pointer rounded border border-cyan p-1">
+        <span
+          className={clsx("block h-[8px] w-[8px] bg-cyan duration-300", {
+            "bg-white": value === false,
+          })}
+        />
       </div>
-      {label && (
-        <span className="text-gray-500 font-medium">
-          {label}
-        </span>
-      )}
+      {label && <span className="font-medium text-gray-500">{label}</span>}
     </div>
-  )
-}
+  );
+};

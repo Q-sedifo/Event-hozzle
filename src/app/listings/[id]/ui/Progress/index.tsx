@@ -4,8 +4,8 @@ interface Props {
 
 export const Progress = ({ progress }: Props) => {
   return (
-    <div className="relative w-full max-w-[200px] h-[4px] bg-gray-300 overflow-hidden">
-      <span className="absolute left-0 w-[80%] h-full bg-black"/>
+    <div className="relative h-[4px] w-full max-w-[200px] overflow-hidden bg-gray-300">
+      <span className="absolute left-0 h-full w-[80%] bg-black" />
     </div>
-  )
-}
+  );
+};

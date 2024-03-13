@@ -133,9 +133,12 @@ const ListingPage = () => {
                 <h3 className="text-[18px] font-bold text-primary md:text-[22px]">
                   Gallery
                 </h3>
-                <div className="flex items-center justify-center flex-wrap gap-5 py-5 md:justify-between">
+                <div className="flex flex-wrap items-center justify-center gap-5 py-5 md:justify-between">
                   {[1, 2, 3].map((item, index) => (
-                    <div key={index} className="h-[150px] w-[230px] min-w-[230px] bg-cyan" />
+                    <div
+                      key={index}
+                      className="h-[150px] w-[230px] min-w-[230px] bg-cyan"
+                    />
                   ))}
                 </div>
               </section>
@@ -156,61 +159,69 @@ const ListingPage = () => {
                 </div>
               </section>
               <section>
-                <h3 className="text-[18px] font-bold text-primary mb-5 md:text-[22px]">
+                <h3 className="mb-5 text-[18px] font-bold text-primary md:text-[22px]">
                   Review
                 </h3>
-                <div className="p-[30px] bg-gray-100 shadow-[5px_5px_0px_0px_#dedede]">
-                  <h2 className="flex items-center gap-2 text-[15px] md:text-[20px] font-semibold">
-                    <Estimate/>
+                <div className="bg-gray-100 p-[30px] shadow-[5px_5px_0px_0px_#dedede]">
+                  <h2 className="flex items-center gap-2 text-[15px] font-semibold md:text-[20px]">
+                    <Estimate />
                     5.0 <span className="text-cyan">(5 reviews)</span>
                   </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-3 pt-5">
+                  <div className="grid grid-cols-1 gap-x-10 gap-y-3 pt-5 md:grid-cols-2">
                     {[1, 2, 3, 4, 5, 6].map((item, index) => (
-                      <div key={index} className="w-full flex items-center justify-between text-[14px] font-semibold">
+                      <div
+                        key={index}
+                        className="flex w-full items-center justify-between text-[14px] font-semibold"
+                      >
                         TEST
-                        <span className="w-full flex items-center justify-end gap-4">
-                          <Progress progress={80}/>
+                        <span className="flex w-full items-center justify-end gap-4">
+                          <Progress progress={80} />
                           4.0
                         </span>
                       </div>
                     ))}
                   </div>
                 </div>
-                <div className="flex items-center p-[30px] bg-gray-100 shadow-[5px_5px_0px_0px_#dedede] mt-10">
-                  <div className="flex-1 flex flex-col gap-5">
-                    <h4 className="text-[17px] font-semibold">Tell people what you think.</h4>
+                <div className="mt-10 flex items-center bg-gray-100 p-[30px] shadow-[5px_5px_0px_0px_#dedede]">
+                  <div className="flex flex-1 flex-col gap-5">
+                    <h4 className="text-[17px] font-semibold">
+                      Tell people what you think.
+                    </h4>
                     <span className="text-[13px] md:text-[15px]">
                       Help others by sharing your experience with this business.
                     </span>
                   </div>
-                  <button className="my-5 w-fit bg-cyan py-4 px-8 text-center text-[15px] font-bold text-white duration-500 shadow-[5px_5px_0px_0px_#82e0e0] hover:shadow-[5px_5px_0px_0px_#000000]">
+                  <button className="my-5 w-fit bg-cyan px-8 py-4 text-center text-[15px] font-bold text-white shadow-[5px_5px_0px_0px_#82e0e0] duration-500 hover:shadow-[5px_5px_0px_0px_#000000]">
                     Write A Review
                   </button>
                 </div>
-                <div className="flex flex-col gap-5 mt-10">
+                <div className="mt-10 flex flex-col gap-5">
                   {[1, 2, 3].map((item, index) => (
-                    <Comment 
+                    <Comment
                       key={index}
                       text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo maecenas accumsan lacus vel facilisis."
                       estimate="4.5"
                     />
                   ))}
                 </div>
-                <div className="p-[30px] mt-10 bg-gray-100 shadow-[5px_5px_0px_0px_#dedede]">
-                  <h3 className="text-[18px] font-bold text-primary mb-5 md:text-[22px]">
+                <div className="mt-10 bg-gray-100 p-[30px] shadow-[5px_5px_0px_0px_#dedede]">
+                  <h3 className="mb-5 text-[18px] font-bold text-primary md:text-[22px]">
                     Add A Review
                   </h3>
-                  <p>Your email address will not be published. Required fields are marked *</p>
+                  <p>
+                    Your email address will not be published. Required fields
+                    are marked *
+                  </p>
                   <CommentForm />
                 </div>
               </section>
               <section>
-                <h3 className="text-[18px] font-bold text-primary mt-5 md:text-[22px]">
+                <h3 className="mt-5 text-[18px] font-bold text-primary md:text-[22px]">
                   Other Nearby Services
                 </h3>
                 <div className="flex flex-col items-center gap-10 py-5 md:flex-row">
                   {[1, 2].map((item, index) => (
-                    <Listing key={index}/>
+                    <Listing key={index} />
                   ))}
                 </div>
               </section>
@@ -220,7 +231,7 @@ const ListingPage = () => {
                 <h3 className="text-[17px] font-bold text-primary md:text-[20px]">
                   Booking Online
                 </h3>
-                <button className="my-5 w-full bg-cyan p-4 text-center text-[15px] font-bold text-white duration-500 shadow-[5px_5px_0px_0px_#82e0e0] hover:shadow-[5px_5px_0px_0px_#000000]">
+                <button className="my-5 w-full bg-cyan p-4 text-center text-[15px] font-bold text-white shadow-[5px_5px_0px_0px_#82e0e0] duration-500 hover:shadow-[5px_5px_0px_0px_#000000]">
                   Book now
                 </button>
                 <p className="text-[15px] text-gray-500">By Booking.com</p>
