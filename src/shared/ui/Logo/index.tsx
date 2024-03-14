@@ -7,5 +7,11 @@ interface Props {
 }
 
 export const Logo = ({ className }: Props) => {
-  return <Image src={logo} alt="logo" className={clsx("block w-fit min-w-fit", className)} />;
+  return (
+    <Image
+      src={logo}
+      alt="logo"
+      className={clsx("block w-fit min-w-fit", className)}
+    />
+  );
 };

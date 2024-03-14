@@ -28,34 +28,63 @@ export const CommentForm = () => {
 
   return (
     <>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={reviewSchema} validateOnChange={false}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={reviewSchema}
+        validateOnChange={false}
+      >
         {({ values, errors, setFieldValue, handleSubmit, isSubmitting }) => (
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <div className="mt-5 grid grid-cols-1 gap-2 border-b pb-5 text-[20px] md:grid-cols-3">
               <div className="flex flex-col gap-2">
                 <span className="text-[16px] font-semibold">Cleanliness</span>
-                <BaseError error={errors.cleanliness}/>
-                <Estimate active={true} onChange={(value) => setFieldValue("cleanliness", value)} rate={values.cleanliness}/>
+                <BaseError error={errors.cleanliness} />
+                <Estimate
+                  active={true}
+                  onChange={(value) => setFieldValue("cleanliness", value)}
+                  rate={values.cleanliness}
+                />
               </div>
               <div className="flex flex-col gap-3">
                 <span className="text-[16px] font-semibold">Accuracy</span>
-                <Estimate active={true} onChange={(value) => setFieldValue("accuracy", value)} rate={values.accuracy}/>
+                <Estimate
+                  active={true}
+                  onChange={(value) => setFieldValue("accuracy", value)}
+                  rate={values.accuracy}
+                />
               </div>
               <div className="flex flex-col gap-3">
                 <span className="text-[16px] font-semibold">Location</span>
-                <Estimate active={true} onChange={(value) => setFieldValue("location", value)} rate={values.location}/>
+                <Estimate
+                  active={true}
+                  onChange={(value) => setFieldValue("location", value)}
+                  rate={values.location}
+                />
               </div>
               <div className="flex flex-col gap-3">
                 <span className="text-[16px] font-semibold">Check-in</span>
-                <Estimate active={true} onChange={(value) => setFieldValue("checkIn", value)} rate={values.checkIn}/>
+                <Estimate
+                  active={true}
+                  onChange={(value) => setFieldValue("checkIn", value)}
+                  rate={values.checkIn}
+                />
               </div>
               <div className="flex flex-col gap-3">
                 <span className="text-[16px] font-semibold">Communication</span>
-                <Estimate active={true} onChange={(value) => setFieldValue("communication", value)} rate={values.communication}/>
+                <Estimate
+                  active={true}
+                  onChange={(value) => setFieldValue("communication", value)}
+                  rate={values.communication}
+                />
               </div>
               <div className="flex flex-col gap-3">
                 <span className="text-[16px] font-semibold">Value</span>
-                <Estimate active={true} onChange={(value) => setFieldValue("value", value)} rate={values.value}/>
+                <Estimate
+                  active={true}
+                  onChange={(value) => setFieldValue("value", value)}
+                  rate={values.value}
+                />
               </div>
             </div>
             <div className="flex flex-col items-center gap-5 md:flex-row">

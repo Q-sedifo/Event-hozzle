@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import clsx from "clsx";
 
@@ -20,27 +20,33 @@ export const Estimate = ({ rate = 0, active, onChange }: Props) => {
   const starsCount = [1, 2, 3, 4, 5];
 
   const handleClick = (rate: number) => {
-    console.log("RATE", rate)
-    onChange && onChange(rate)
-  }
+    console.log("RATE", rate);
+    onChange && onChange(rate);
+  };
 
   const handleHover = (rate: number) => {
-    setHoverFilledStars(rate)
-  }
+    setHoverFilledStars(rate);
+  };
 
   return (
-    <div 
+    <div
       className={clsx("flex w-fit items-center gap-1 text-yellow", {
-        "cursor-pointer" : active
+        "cursor-pointer": active,
       })}
       onMouseLeave={() => setHoverFilledStars(() => 0)}
     >
       {starsCount.map((item, index) => (
         <span key={index}>
-          {(active ? (index < (hoverFilledStars || rate)) : (index < rate)) ? (
-            <TbStarFilled onClick={() => handleClick(item)} onMouseEnter={() => handleHover(item)}/>
+          {(active ? index < (hoverFilledStars || rate) : index < rate) ? (
+            <TbStarFilled
+              onClick={() => handleClick(item)}
+              onMouseEnter={() => handleHover(item)}
+            />
           ) : (
-            <TbStar onClick={() => handleClick(item)} onMouseEnter={() => handleHover(item)} />
+            <TbStar
+              onClick={() => handleClick(item)}
+              onMouseEnter={() => handleHover(item)}
+            />
           )}
         </span>
       ))}

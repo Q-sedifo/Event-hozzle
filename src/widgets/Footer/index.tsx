@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Container } from "@/shared/ui/Container";
 import { Title } from "./ui/Title";
 import { Link } from "./ui/Link";
@@ -10,7 +10,7 @@ import FooterImage from "@/shared/assets/images/footer-image.png";
 export const Footer = () => {
   const path = usePathname();
 
-  return (path && !path.includes("dashboard")) ? (
+  return path && !path.includes("dashboard") ? (
     <footer className="w-full bg-gray-100">
       <Container>
         <div className="grid grid-cols-1 gap-5 border-b border-gray-200 py-20 sm:grid-cols-2 lg:grid-cols-4">

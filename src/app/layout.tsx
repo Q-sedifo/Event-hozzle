@@ -30,9 +30,9 @@ export default function RootLayout({
         <Providers>
           <Loader />
           <Header />
-          <SideBar isOpen={true} isMobile={false}/>
+          <SideBar isOpen={true} isMobile={false} />
           <main>{children}</main>
-          <ScrollBtn/>
+          <ScrollBtn />
           <Footer />
           <div id="modal"></div>
         </Providers>

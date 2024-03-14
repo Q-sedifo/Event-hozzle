@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import clsx from "clsx";
 import { Logo } from "@/shared/ui/Logo";
@@ -26,32 +26,61 @@ interface Props {
 
 export const SideBar = ({ isOpen, isMobile }: Props) => {
   const path = usePathname();
-  const isDashboard = path.includes("dashboard")
+  const isDashboard = path.includes("dashboard");
 
   return isDashboard ? (
-    <div className={clsx("fixed left-0 top-0 h-[100vh] w-[250px] -translate-x-full border-r-[8px] border-gray-100 bg-white py-5 duration-500", {
-      "!translate-x-[0%]": isOpen,
-      "z-50": isMobile
-    })}>
+    <div
+      className={clsx(
+        "fixed left-0 top-0 h-[100vh] w-[250px] -translate-x-full border-r-[8px] border-gray-100 bg-white py-5 duration-500",
+        {
+          "!translate-x-[0%]": isOpen,
+          "z-50": isMobile,
+        },
+      )}
+    >
       <div className="flex items-center justify-between">
-        <Logo/>
-        <IoClose className="cursor-pointer"/>
+        <Logo />
+        <IoClose className="cursor-pointer" />
       </div>
       <div>
-        <Title text="Main"/>
-        <NavItem text="Dashboard" href="/dashboard" icon={<GrHome/>} />
-        <NavItem text="Messages" href="/dashboard/messages" icon={<FaRegEnvelopeOpen/>} />
-        <NavItem text="Bookings" href="/dashboard/bookings" icon={<BsCopy/>} />
-        <NavItem text="Wallet" href="/dashboard/wallet" icon={<LuWallet2/>} />
-        <Title text="Listings"/>
-        <NavItem text="Reviews" href="/dashboard/reviews" icon={<FaRegStar/>} />
-        <NavItem text="Bookmarks" href="/dashboard/bookmarks" icon={<FaRegHeart/>} />
-        <NavItem text="Add Listings" href="/dashboard/add-listing" icon={<IoMdAddCircleOutline/>} />
-        <NavItem text="Invoice" href="/dashboard/invoice" icon={<TbCircleDotted/>} />
-        <Title text="Account"/>
-        <NavItem text="Profile" href="/dashboard/profile" icon={<MdAccountCircle/>} />
-        <NavItem text="Logout" href="/dashboard/invoice" icon={<CiLogout/>} />
+        <Title text="Main" />
+        <NavItem text="Dashboard" href="/dashboard" icon={<GrHome />} />
+        <NavItem
+          text="Messages"
+          href="/dashboard/messages"
+          icon={<FaRegEnvelopeOpen />}
+        />
+        <NavItem text="Bookings" href="/dashboard/bookings" icon={<BsCopy />} />
+        <NavItem text="Wallet" href="/dashboard/wallet" icon={<LuWallet2 />} />
+        <Title text="Listings" />
+        <NavItem
+          text="Reviews"
+          href="/dashboard/reviews"
+          icon={<FaRegStar />}
+        />
+        <NavItem
+          text="Bookmarks"
+          href="/dashboard/bookmarks"
+          icon={<FaRegHeart />}
+        />
+        <NavItem
+          text="Add Listings"
+          href="/dashboard/add-listing"
+          icon={<IoMdAddCircleOutline />}
+        />
+        <NavItem
+          text="Invoice"
+          href="/dashboard/invoice"
+          icon={<TbCircleDotted />}
+        />
+        <Title text="Account" />
+        <NavItem
+          text="Profile"
+          href="/dashboard/profile"
+          icon={<MdAccountCircle />}
+        />
+        <NavItem text="Logout" href="/dashboard/invoice" icon={<CiLogout />} />
       </div>
     </div>
-  ) : null
-}
+  ) : null;
+};

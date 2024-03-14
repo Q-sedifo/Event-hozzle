@@ -27,7 +27,7 @@ export const Header = ({ className }: Props) => {
   const session = useSession();
   const path = usePathname();
 
-  const isDashboard = path.includes("dashboard")
+  const isDashboard = path.includes("dashboard");
 
   return (
     <>
@@ -40,9 +40,9 @@ export const Header = ({ className }: Props) => {
       >
         <div className="flex items-center gap-[50px] py-5">
           <div className="flex items-center gap-[50px]">
-            <Logo className={isDashboard ? "hidden xl:block" : ""}/>
+            <Logo className={isDashboard ? "hidden xl:block" : ""} />
             {isDashboard ? (
-              <VscMenu className="block h-[30px] w-[30px] cursor-pointer xl:hidden"/>
+              <VscMenu className="block h-[30px] w-[30px] cursor-pointer xl:hidden" />
             ) : (
               <SearchInput className="hidden 2xl:flex" />
             )}
