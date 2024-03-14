@@ -4,7 +4,7 @@ import { RiArrowDownSLine } from "react-icons/ri";
 const items = [
   { title: "Home", src: "/" },
   { title: "Listings", src: "/listings" },
-  { title: "User panel", src: "/" },
+  { title: "User panel", src: "/dashboard" },
   { title: "Shop", src: "/" },
   { title: "Blog", src: "/" },
   { title: "Pages", src: "/" },

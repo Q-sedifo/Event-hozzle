@@ -30,7 +30,7 @@ export default function RootLayout({
         <Providers>
           <Loader />
           <Header />
-          <SideBar isOpen={true} isMobile={false} />
+          <SideBar/>
           <main>{children}</main>
           <ScrollBtn />
           <Footer />

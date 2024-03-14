@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 import { NavList } from "./ui/NavList";
 import { ProfileBtn } from "./ui/ProfileBtn";
 import { usePathname } from "next/navigation";
+import { useSidebar } from "@/shared/contexts/SidebarContext";
 import clsx from "clsx";
 
 // Icons
@@ -24,6 +25,7 @@ export const Header = ({ className }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileToolsOpen, setIsMobileToolsOpen] = useState<boolean>(false);
   const header = useRef<HTMLElement | null>(null);
+  const { toggleSidebar } = useSidebar();
   const session = useSession();
   const path = usePathname();
 
@@ -42,7 +44,7 @@ export const Header = ({ className }: Props) => {
           <div className="flex items-center gap-[50px]">
             <Logo className={isDashboard ? "hidden xl:block" : ""} />
             {isDashboard ? (
-              <VscMenu className="block h-[30px] w-[30px] cursor-pointer xl:hidden" />
+              <VscMenu className="block h-[30px] w-[30px] cursor-pointer xl:hidden" onClick={toggleSidebar}/>
             ) : (
               <SearchInput className="hidden 2xl:flex" />
             )}

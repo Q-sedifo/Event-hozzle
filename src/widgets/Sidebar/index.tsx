@@ -1,10 +1,12 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import clsx from "clsx";
 import { Logo } from "@/shared/ui/Logo";
 import { usePathname } from "next/navigation";
 import { Title } from "./ui/Title";
 import { NavItem } from "./ui/NavItem";
+import { useSidebar } from "@/shared/contexts/SidebarContext";
+import { useMobile } from "@/shared/contexts/MobileContext";
 
 // Icons
 import { IoClose } from "react-icons/io5";
@@ -19,28 +21,32 @@ import { TbCircleDotted } from "react-icons/tb";
 import { MdAccountCircle } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
 
-interface Props {
-  isOpen: boolean;
-  isMobile: boolean;
-}
-
-export const SideBar = ({ isOpen, isMobile }: Props) => {
+export const SideBar = () => {
   const path = usePathname();
   const isDashboard = path.includes("dashboard");
+
+  const { isSidebarOpen, openSidebar, closeSidebar } = useSidebar();
+  const { isMobile } = useMobile();
+
+  useEffect(() => {
+    if (isMobile) return
+
+    openSidebar();
+  }, [isMobile, openSidebar])
 
   return isDashboard ? (
     <div
       className={clsx(
         "fixed left-0 top-0 h-[100vh] w-[250px] -translate-x-full border-r-[8px] border-gray-100 bg-white py-5 duration-500",
         {
-          "!translate-x-[0%]": isOpen,
+          "!translate-x-[0%]": isSidebarOpen,
           "z-50": isMobile,
         },
       )}
     >
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between px-5">
         <Logo />
-        <IoClose className="cursor-pointer" />
+        <IoClose className="cursor-pointer" onClick={closeSidebar}/>
       </div>
       <div>
         <Title text="Main" />
