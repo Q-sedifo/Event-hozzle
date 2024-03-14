@@ -91,19 +91,6 @@ const Categories = [
 ];
 
 export default function Home() {
-  React.useEffect(() => {
-    fetchUser();
-  }, []);
-
-  const fetchUser = async () => {
-    try {
-      const resp = await serverApi.get("/users/getMe");
-      console.log("RESP", resp);
-    } catch (error) {
-      console.log("RESP ERROR", error);
-    }
-  };
-
   return (
     <div>
       <div className="relative bg-gray-100 pt-[100px]">

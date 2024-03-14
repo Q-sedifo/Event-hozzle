@@ -1,18 +1,20 @@
 "use client";
 import { useState, useRef } from "react";
-import { Logo } from "./ui/Logo";
+import { Logo } from "@/shared/ui/Logo";
 import { SearchInput } from "./ui/Search";
 import { AddListingBtn } from "./ui/AddListingBtn";
 import { AuthorizationModal } from "@/shared/ui/modals/AuthorizationModal";
 import { useSession } from "next-auth/react";
 import { NavList } from "./ui/NavList";
 import { ProfileBtn } from "./ui/ProfileBtn";
+import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
 // Icons
 import { PiUserCircle } from "react-icons/pi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { HiDotsHorizontal } from "react-icons/hi";
+import { VscMenu } from "react-icons/vsc";
 
 interface Props {
   className?: string;
@@ -23,6 +25,9 @@ export const Header = ({ className }: Props) => {
   const [isMobileToolsOpen, setIsMobileToolsOpen] = useState<boolean>(false);
   const header = useRef<HTMLElement | null>(null);
   const session = useSession();
+  const path = usePathname();
+
+  const isDashboard = path.includes("dashboard")
 
   return (
     <>
@@ -35,8 +40,12 @@ export const Header = ({ className }: Props) => {
       >
         <div className="flex items-center gap-[50px] py-5">
           <div className="flex items-center gap-[50px]">
-            <Logo />
-            <SearchInput className="hidden 2xl:flex" />
+            <Logo className={isDashboard ? "hidden xl:block" : ""}/>
+            {isDashboard ? (
+              <VscMenu className="block h-[30px] w-[30px] cursor-pointer xl:hidden"/>
+            ) : (
+              <SearchInput className="hidden 2xl:flex" />
+            )}
           </div>
           <div className="flex flex-1 items-center justify-end gap-[50px] xl:justify-between">
             <NavList />

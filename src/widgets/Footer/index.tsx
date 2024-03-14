@@ -1,12 +1,16 @@
+"use client"
 import { Container } from "@/shared/ui/Container";
 import { Title } from "./ui/Title";
 import { Link } from "./ui/Link";
 import { FormDropdown } from "@/shared/ui/dropdowns/FormDropdown";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import FooterImage from "@/shared/assets/images/footer-image.png";
 
 export const Footer = () => {
-  return (
+  const path = usePathname();
+
+  return (path && !path.includes("dashboard")) ? (
     <footer className="w-full bg-gray-100">
       <Container>
         <div className="grid grid-cols-1 gap-5 border-b border-gray-200 py-20 sm:grid-cols-2 lg:grid-cols-4">
@@ -69,5 +73,5 @@ export const Footer = () => {
         </Container>
       </div>
     </footer>
-  );
+  ) : null;
 };

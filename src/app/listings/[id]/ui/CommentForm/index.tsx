@@ -6,6 +6,7 @@ import { BaseButton } from "@/shared/ui/buttons/BaseButton";
 import { BaseError } from "@/shared/ui/errors/BaseError";
 import { BaseCheckbox } from "@/shared/ui/checkboxes/BaseCheckbox";
 import { Estimate } from "@/shared/ui/inputs/Estimate";
+import { reviewSchema } from "@/shared/validation/review/addReviewValidation";
 
 const initialValues = {
   name: "",
@@ -27,10 +28,36 @@ export const CommentForm = () => {
 
   return (
     <>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={reviewSchema} validateOnChange={false}>
         {({ values, errors, setFieldValue, handleSubmit, isSubmitting }) => (
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-            <div></div>
+            <div className="mt-5 grid grid-cols-1 gap-2 border-b pb-5 text-[20px] md:grid-cols-3">
+              <div className="flex flex-col gap-2">
+                <span className="text-[16px] font-semibold">Cleanliness</span>
+                <BaseError error={errors.cleanliness}/>
+                <Estimate active={true} onChange={(value) => setFieldValue("cleanliness", value)} rate={values.cleanliness}/>
+              </div>
+              <div className="flex flex-col gap-3">
+                <span className="text-[16px] font-semibold">Accuracy</span>
+                <Estimate active={true} onChange={(value) => setFieldValue("accuracy", value)} rate={values.accuracy}/>
+              </div>
+              <div className="flex flex-col gap-3">
+                <span className="text-[16px] font-semibold">Location</span>
+                <Estimate active={true} onChange={(value) => setFieldValue("location", value)} rate={values.location}/>
+              </div>
+              <div className="flex flex-col gap-3">
+                <span className="text-[16px] font-semibold">Check-in</span>
+                <Estimate active={true} onChange={(value) => setFieldValue("checkIn", value)} rate={values.checkIn}/>
+              </div>
+              <div className="flex flex-col gap-3">
+                <span className="text-[16px] font-semibold">Communication</span>
+                <Estimate active={true} onChange={(value) => setFieldValue("communication", value)} rate={values.communication}/>
+              </div>
+              <div className="flex flex-col gap-3">
+                <span className="text-[16px] font-semibold">Value</span>
+                <Estimate active={true} onChange={(value) => setFieldValue("value", value)} rate={values.value}/>
+              </div>
+            </div>
             <div className="flex flex-col items-center gap-5 md:flex-row">
               <div className="w-full md:flex-1">
                 <BaseError error={errors.name} />
@@ -54,9 +81,11 @@ export const CommentForm = () => {
               </div>
             </div>
             <div>
+              <BaseError error={errors.review} />
               <BaseTextarea
                 placeholder="Your review"
                 className="h-[150px] w-full rounded border bg-white p-3 shadow-md"
+                onChange={(value) => setFieldValue("review", value)}
               />
             </div>
             <div className="flex items-center gap-4">

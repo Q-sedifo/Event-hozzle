@@ -5,6 +5,8 @@ import { Providers } from "@/app/(providers)";
 import { Header } from "@/widgets/Header";
 import { Footer } from "@/widgets/Footer";
 import { Loader } from "@/shared/ui/Loader";
+import { SideBar } from "@/widgets/Sidebar";
+import { ScrollBtn } from "@/shared/ui/buttons/ScrollBtn";
 import "./globals.css";
 
 const WorkSans = Work_Sans({ subsets: ["latin"] });
@@ -24,11 +26,13 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className={WorkSans.className}>
+      <body className={`${WorkSans.className} relative`}>
         <Providers>
           <Loader />
           <Header />
+          <SideBar isOpen={true} isMobile={false}/>
           <main>{children}</main>
+          <ScrollBtn/>
           <Footer />
           <div id="modal"></div>
         </Providers>
