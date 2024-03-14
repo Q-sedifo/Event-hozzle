@@ -8,10 +8,10 @@ interface SidebarContextType {
 }
 
 const defaultContextData: SidebarContextType = {
-  isSidebarOpen: true, 
+  isSidebarOpen: true,
   openSidebar: () => {},
   closeSidebar: () => {},
-  toggleSidebar: () => {}, 
+  toggleSidebar: () => {},
 };
 
 const SidebarContext = createContext<SidebarContextType>(defaultContextData);
@@ -32,7 +32,9 @@ export const SidebarProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <SidebarContext.Provider value={{ isSidebarOpen, toggleSidebar, openSidebar, closeSidebar }}>
+    <SidebarContext.Provider
+      value={{ isSidebarOpen, toggleSidebar, openSidebar, closeSidebar }}
+    >
       {children}
     </SidebarContext.Provider>
   );

@@ -44,7 +44,10 @@ export const Header = ({ className }: Props) => {
           <div className="flex items-center gap-[50px]">
             <Logo className={isDashboard ? "hidden xl:block" : ""} />
             {isDashboard ? (
-              <VscMenu className="block h-[30px] w-[30px] cursor-pointer xl:hidden" onClick={toggleSidebar}/>
+              <VscMenu
+                className="block h-[30px] w-[30px] cursor-pointer xl:hidden"
+                onClick={toggleSidebar}
+              />
             ) : (
               <SearchInput className="hidden 2xl:flex" />
             )}

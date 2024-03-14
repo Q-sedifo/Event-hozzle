@@ -29,10 +29,10 @@ export const SideBar = () => {
   const { isMobile } = useMobile();
 
   useEffect(() => {
-    if (isMobile) return
+    if (isMobile) return;
 
     openSidebar();
-  }, [isMobile, openSidebar])
+  }, [isMobile, openSidebar]);
 
   return isDashboard ? (
     <div
@@ -46,7 +46,7 @@ export const SideBar = () => {
     >
       <div className="flex items-center justify-between px-5">
         <Logo />
-        <IoClose className="cursor-pointer" onClick={closeSidebar}/>
+        <IoClose className="cursor-pointer" onClick={closeSidebar} />
       </div>
       <div>
         <Title text="Main" />

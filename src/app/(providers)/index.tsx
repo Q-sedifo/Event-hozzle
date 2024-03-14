@@ -12,9 +12,7 @@ export const Providers = ({ children }: Props) => {
   return (
     <SessionProvider>
       <MobileProvider>
-        <SidebarProvider>
-          {children}
-        </SidebarProvider>
+        <SidebarProvider>{children}</SidebarProvider>
       </MobileProvider>
     </SessionProvider>
   );

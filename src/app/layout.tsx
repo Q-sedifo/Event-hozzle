@@ -30,7 +30,7 @@ export default function RootLayout({
         <Providers>
           <Loader />
           <Header />
-          <SideBar/>
+          <SideBar />
           <main>{children}</main>
           <ScrollBtn />
           <Footer />
