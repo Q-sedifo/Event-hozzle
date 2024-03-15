@@ -29,9 +29,15 @@ export default function RootLayout({
       <body className={`${WorkSans.className} relative`}>
         <Providers>
           <Loader />
-          <Header />
-          <SideBar />
-          <main>{children}</main>
+          <div className="flex min-h-[100vh] flex-col">
+            <Header />
+            <main className="flex h-full w-full flex-1">
+              <SideBar />
+              <div className="w-full flex-1">
+                {children}
+              </div>
+            </main>
+          </div>
           <ScrollBtn />
           <Footer />
           <div id="modal"></div>

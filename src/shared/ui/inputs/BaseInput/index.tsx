@@ -6,7 +6,7 @@ interface Props {
   value?: string;
   onChange: (data: string) => void;
   icon?: React.ReactNode;
-  placeholder: string;
+  placeholder?: string;
   className?: string;
   type?: "text" | "password";
 }
@@ -26,7 +26,7 @@ export const BaseInput = ({
         value={value}
         type={type}
         placeholder={placeholder}
-        className="w-full border-none outline-none"
+        className="w-full border-none bg-inherit outline-none"
         onChange={(e) => onChange(e.target.value)}
         autoComplete="off"
       />

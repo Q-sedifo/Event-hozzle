@@ -1,7 +1,11 @@
 import React from "react";
 
 const Dashboard = () => {
-  return <div>TEST DAHSBOARD</div>;
+  return (
+    <div className="h-[2000px]">
+      TEST DAHSBOARD
+    </div>
+  );
 };
 
 export default Dashboard;

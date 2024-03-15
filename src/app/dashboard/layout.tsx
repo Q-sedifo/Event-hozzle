@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useMobile } from "@/shared/contexts/MobileContext";
 import clsx from "clsx";
 
@@ -11,8 +11,8 @@ export default function RootLayout({
   const { isMobile } = useMobile();
 
   return (
-    <div>
-      <div className={clsx({ "pl-[258px]": !isMobile })}>{children}</div>
+    <div className={clsx("min-h-full flex-1 bg-lightGray/50 p-10", { "pl-[280px]": !isMobile })}>
+      {children}
     </div>
   );
 }

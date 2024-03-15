@@ -37,7 +37,7 @@ export const SideBar = () => {
   return isDashboard ? (
     <div
       className={clsx(
-        "fixed left-0 top-0 h-[100vh] w-[250px] -translate-x-full border-r-[8px] border-gray-100 bg-white py-5 duration-500",
+        "fixed left-0 top-0 h-full w-[250px] -translate-x-full border-r-[8px] border-gray-100 bg-white py-5 duration-500",
         {
           "!translate-x-[0%]": isSidebarOpen,
           "z-50": isMobile,
@@ -48,7 +48,7 @@ export const SideBar = () => {
         <Logo />
         <IoClose className="cursor-pointer" onClick={closeSidebar} />
       </div>
-      <div>
+      <div className="pt-5">
         <Title text="Main" />
         <NavItem text="Dashboard" href="/dashboard" icon={<GrHome />} />
         <NavItem

@@ -19,12 +19,14 @@ export const NavItem = ({ text, href, icon }: Props) => {
         className={clsx(
           "group flex items-center gap-2 border-l-4 border-transparent px-5 py-2 text-[15px]",
           {
-            "!border-cyan": path.includes(href),
+            "!border-cyan": path === href,
           },
         )}
       >
         <span className="text-[18px] text-gray-700">{icon}</span>
-        <span className="font-medium text-gray-400 duration-500 group-hover:text-cyan">
+        <span className={clsx("font-medium text-gray-400 duration-500 group-hover:text-cyan", {
+          "!text-cyan": path === href,
+        })}>
           {text}
         </span>
       </div>

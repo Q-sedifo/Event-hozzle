@@ -1,6 +1,7 @@
 "use client";
 import { useState, useRef } from "react";
 import { Logo } from "@/shared/ui/Logo";
+import { SideBarToggleBtn } from "./ui/SidebarToggleBtn";
 import { SearchInput } from "./ui/Search";
 import { AddListingBtn } from "./ui/AddListingBtn";
 import { AuthorizationModal } from "@/shared/ui/modals/AuthorizationModal";
@@ -8,14 +9,12 @@ import { useSession } from "next-auth/react";
 import { NavList } from "./ui/NavList";
 import { ProfileBtn } from "./ui/ProfileBtn";
 import { usePathname } from "next/navigation";
-import { useSidebar } from "@/shared/contexts/SidebarContext";
 import clsx from "clsx";
 
 // Icons
 import { PiUserCircle } from "react-icons/pi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { HiDotsHorizontal } from "react-icons/hi";
-import { VscMenu } from "react-icons/vsc";
 
 interface Props {
   className?: string;
@@ -25,7 +24,6 @@ export const Header = ({ className }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileToolsOpen, setIsMobileToolsOpen] = useState<boolean>(false);
   const header = useRef<HTMLElement | null>(null);
-  const { toggleSidebar } = useSidebar();
   const session = useSession();
   const path = usePathname();
 
@@ -35,7 +33,7 @@ export const Header = ({ className }: Props) => {
     <>
       <header
         className={clsx(
-          "sticky left-0 top-0 z-50 w-full bg-white px-2 xl:px-[30px] 2xl:px-[6%]",
+          "sticky left-0 top-0 z-50 w-full bg-white px-2 shadow-lg xl:px-[30px] 2xl:px-[6%]",
           className,
         )}
         ref={header}
@@ -44,16 +42,13 @@ export const Header = ({ className }: Props) => {
           <div className="flex items-center gap-[50px]">
             <Logo className={isDashboard ? "hidden xl:block" : ""} />
             {isDashboard ? (
-              <VscMenu
-                className="block h-[30px] w-[30px] cursor-pointer xl:hidden"
-                onClick={toggleSidebar}
-              />
+              <SideBarToggleBtn/>
             ) : (
               <SearchInput className="hidden 2xl:flex" />
             )}
           </div>
           <div className="flex flex-1 items-center justify-end gap-[50px] xl:justify-between">
-            <NavList />
+            <NavList path={path}/>
             <div className="flex items-center justify-between gap-10">
               {session.data ? (
                 <ProfileBtn session={session} />
