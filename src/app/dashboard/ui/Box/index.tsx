@@ -2,7 +2,7 @@ import React from "react";
 
 interface Props {
   title: string;
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export const Box = ({ children, title }: Props) => {
@@ -11,9 +11,7 @@ export const Box = ({ children, title }: Props) => {
       <div className="border-b p-5">
         <h3 className="text-[17px] font-semibold">{title}</h3>
       </div>
-      <div className="p-5">
-        {children}
-      </div>
+      <div className="p-5">{children}</div>
     </div>
-  )
-}
+  );
+};

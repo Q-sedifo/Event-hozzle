@@ -24,9 +24,14 @@ export const NavItem = ({ text, href, icon }: Props) => {
         )}
       >
         <span className="text-[18px] text-gray-700">{icon}</span>
-        <span className={clsx("font-medium text-gray-400 duration-500 group-hover:text-cyan", {
-          "!text-cyan": path === href,
-        })}>
+        <span
+          className={clsx(
+            "font-medium text-gray-400 duration-500 group-hover:text-cyan",
+            {
+              "!text-cyan": path === href,
+            },
+          )}
+        >
           {text}
         </span>
       </div>

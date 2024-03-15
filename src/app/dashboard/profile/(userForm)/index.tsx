@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import { Formik } from "formik";
 import { BaseInput } from "@/shared/ui/inputs/BaseInput";
@@ -21,12 +21,12 @@ const initialValues = {
   facebookUrl: "",
   twitterUrl: "",
   linkedInUrl: "",
-  instagramUrl: ""
+  instagramUrl: "",
 };
 
 export const UserForm = () => {
   const handleSubmit = (data: any, { setSubmitting }: any) => {
-    console.log("USER DATA: ", data)
+    console.log("USER DATA: ", data);
     setSubmitting(true);
   };
 
@@ -43,13 +43,19 @@ export const UserForm = () => {
             {isSubmitting && "Loading..."}
             <div>
               <div className="relative">
-                <Image width={300} height={300} className="rounded bg-purple-500" src="" alt="Avatar"/>
-                <BaseButton 
-                  text="Upload photo" 
-                  type="button" 
-                  variant="rounded" 
+                <Image
+                  width={300}
+                  height={300}
+                  className="rounded bg-purple-500"
+                  src=""
+                  alt="Avatar"
+                />
+                <BaseButton
+                  text="Upload photo"
+                  type="button"
+                  variant="rounded"
                   className="absolute bottom-5 left-5 border-transparent bg-white text-primary hover:bg-cyan hover:text-white"
-                  icon={<BsUpload/>}
+                  icon={<BsUpload />}
                 />
               </div>
             </div>
@@ -105,7 +111,7 @@ export const UserForm = () => {
             <div>
               <BaseError error={errors.bio} />
               <label className="mb-3 block text-[14px]">Bio</label>
-              <BaseTextarea 
+              <BaseTextarea
                 onChange={(data) => setFieldValue("bio", data)}
                 className="h-[200px] w-full rounded bg-gray-100 p-3 font-normal"
                 value={values.bio}
@@ -151,9 +157,9 @@ export const UserForm = () => {
                 />
               </div>
             </div>
-            <BaseButton 
+            <BaseButton
               text="Save Changes"
-              variant="default" 
+              variant="default"
               type="submit"
               className="!w-full hover:bg-blue-800"
             />

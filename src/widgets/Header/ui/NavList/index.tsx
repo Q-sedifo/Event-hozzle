@@ -20,9 +20,14 @@ export const NavList = ({ path }: Props) => {
     <div className="hidden items-center gap-10 text-primary xl:flex">
       {items.map((item, index) => (
         <Link href={item.src} key={index}>
-          <span className={clsx("flex cursor-pointer items-center gap-1 font-medium duration-500 hover:text-cyan", {
-            "!text-cyan": path?.includes(item.src)
-          })}>
+          <span
+            className={clsx(
+              "flex cursor-pointer items-center gap-1 font-medium duration-500 hover:text-cyan",
+              {
+                "!text-cyan": path?.includes(item.src),
+              },
+            )}
+          >
             {item.title}
             <RiArrowDownSLine />
           </span>

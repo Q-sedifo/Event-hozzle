@@ -42,13 +42,13 @@ export const Header = ({ className }: Props) => {
           <div className="flex items-center gap-[50px]">
             <Logo className={isDashboard ? "hidden xl:block" : ""} />
             {isDashboard ? (
-              <SideBarToggleBtn/>
+              <SideBarToggleBtn />
             ) : (
               <SearchInput className="hidden 2xl:flex" />
             )}
           </div>
           <div className="flex flex-1 items-center justify-end gap-[50px] xl:justify-between">
-            <NavList path={path}/>
+            <NavList path={path} />
             <div className="flex items-center justify-between gap-10">
               {session.data ? (
                 <ProfileBtn session={session} />

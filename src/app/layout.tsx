@@ -33,9 +33,7 @@ export default function RootLayout({
             <Header />
             <main className="flex h-full w-full flex-1">
               <SideBar />
-              <div className="w-full flex-1">
-                {children}
-              </div>
+              <div className="w-full flex-1">{children}</div>
             </main>
           </div>
           <ScrollBtn />

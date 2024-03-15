@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import { Formik } from "formik";
 import { BaseInput } from "@/shared/ui/inputs/BaseInput";
@@ -8,12 +8,12 @@ import { BaseError } from "@/shared/ui/errors/BaseError";
 const initialValues = {
   currentPassword: "lololo",
   newPassword: "",
-  confirmPassword: ""
+  confirmPassword: "",
 };
 
 export const PasswordForm = () => {
   const handleSubmit = (data: any, { setSubmitting }: any) => {
-    console.log("PASSWORD DATA: ", data)
+    console.log("PASSWORD DATA: ", data);
     setSubmitting(true);
   };
 
@@ -58,9 +58,9 @@ export const PasswordForm = () => {
                 type="password"
               />
             </div>
-            <BaseButton 
+            <BaseButton
               text="Change Password"
-              variant="default" 
+              variant="default"
               type="submit"
               className="!w-full hover:bg-blue-800"
             />

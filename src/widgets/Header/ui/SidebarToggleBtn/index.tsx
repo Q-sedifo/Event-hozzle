@@ -9,5 +9,5 @@ export const SideBarToggleBtn = () => {
       className="block h-[30px] w-[30px] cursor-pointer xl:hidden"
       onClick={toggleSidebar}
     />
-  )
-}
+  );
+};
