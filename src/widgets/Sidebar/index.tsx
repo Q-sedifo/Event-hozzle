@@ -31,7 +31,7 @@ export const SideBar = () => {
   useEffect(() => {
     if (isMobile) {
       closeSidebar();
-      return
+      return;
     }
 
     openSidebar();

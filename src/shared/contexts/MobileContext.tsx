@@ -36,7 +36,7 @@ export const MobileProvider = ({ children }: { children: ReactNode }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  
+
   return (
     <MobileContext.Provider value={{ isMobile }}>
       {children}
