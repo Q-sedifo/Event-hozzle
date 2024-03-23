@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Container } from "@/shared/ui/Container";
 import { Search } from "@/widgets/Search";
 import { Listing } from "@/entities/Listing/ui";
