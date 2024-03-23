@@ -33,7 +33,11 @@ export const authConfig: AuthOptions = {
         try {
           const resp = await serverApi.post("/auth/login", credentials);
           console.log("LOGIN RESP", resp);
-          return false as any;
+
+          cookies().set("_auth_access_token", resp.data.access_token);
+          cookies().set("_auth_refresh_token", resp.data.refresh_token);
+
+          return resp.data as any;
           // return { ok: true, user:  }
         } catch (error) {
           return { ok: false };

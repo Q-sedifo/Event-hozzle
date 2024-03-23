@@ -24,7 +24,10 @@ export const NavList = ({ path }: Props) => {
             className={clsx(
               "flex cursor-pointer items-center gap-1 font-medium duration-500 hover:text-cyan",
               {
-                "!text-cyan": path?.includes(item.src),
+                "!text-cyan":
+                  item.src === "/"
+                    ? item.src === "/" && path === "/"
+                    : item.src !== "" && path?.includes(item.src),
               },
             )}
           >
