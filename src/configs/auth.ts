@@ -29,7 +29,7 @@ export const authConfig: AuthOptions = {
       },
       authorize: async (credentials) => {
         if (!credentials?.email || !credentials?.password) return null;
-
+        
         try {
           const resp = await serverApi.post("/auth/login", credentials);
           console.log("LOGIN RESP", resp);
@@ -38,9 +38,9 @@ export const authConfig: AuthOptions = {
           cookies().set("_auth_refresh_token", resp.data.refresh_token);
 
           return resp.data as any;
-          // return { ok: true, user:  }
         } catch (error) {
-          return { ok: false };
+          console.log("LOGIN ERROR", error)
+          return false;
         }
         // return credentials as any;
       },

@@ -6,7 +6,7 @@ import { useListingsStore } from "@/entities/Listing/model/store";
 const AddListing = () => {
   const { addListing } = useListingsStore();
 
-  const handleSubmit = (values: any) => {
+  const handleSubmit = async (values: any) => {
     addListing(values);
   };
 
