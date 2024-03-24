@@ -21,7 +21,7 @@ export const RegisterForm = () => {
     await signIn("sign-up", data).then((resp) => {
       setSubmitting(false);
       redirect("/");
-    })
+    });
   };
 
   return (

@@ -13,14 +13,14 @@ export const useListingsStore = create<Store>((set, get) => ({
     try {
       const response = await fetch("http://localhost/api/listings", {
         method: "GET",
-        mode: "no-cors"
-      })
+        mode: "no-cors",
+      });
 
-      console.log("LISTINGS RESPONSE", await response.json())
-    } catch(error) {
-      console.log("ERROR FETCHING LISTINGS", error)
+      console.log("LISTINGS RESPONSE", await response.json());
+    } catch (error) {
+      console.log("ERROR FETCHING LISTINGS", error);
     }
-  }, 
+  },
   addListing: async (listing) => {
     console.log("LISTING", listing);
     try {

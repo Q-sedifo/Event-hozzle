@@ -29,7 +29,7 @@ export const authConfig: AuthOptions = {
       },
       authorize: async (credentials) => {
         if (!credentials?.email || !credentials?.password) return null;
-        
+
         try {
           const resp = await serverApi.post("/auth/login", credentials);
           console.log("LOGIN RESP", resp);
@@ -39,7 +39,7 @@ export const authConfig: AuthOptions = {
 
           return resp.data as any;
         } catch (error) {
-          console.log("LOGIN ERROR", error)
+          console.log("LOGIN ERROR", error);
           return false;
         }
         // return credentials as any;

@@ -95,7 +95,7 @@ export default function Home() {
 
   useEffect(() => {
     getListings();
-  }, [])
+  }, []);
 
   return (
     <div>
