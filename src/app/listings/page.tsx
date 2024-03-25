@@ -1,3 +1,4 @@
+"use client";
 import { Container } from "@/shared/ui/Container";
 import { Search } from "@/widgets/Search";
 import { Listing } from "@/entities/Listing/ui";
@@ -38,6 +39,7 @@ const Listings = () => {
                   placeholder="Recommended"
                   items={filterItems}
                   className="!w-fit font-semibold"
+                  onSelect={(data) => ""}
                 />
               </span>
             </div>

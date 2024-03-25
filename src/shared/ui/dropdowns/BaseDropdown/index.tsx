@@ -7,6 +7,8 @@ export interface IBaseDropdownProps {
   className?: string;
   icon?: React.ReactNode;
   placeholder?: string;
+  onSelect: (data: string) => void;
+  selected?: string | null;
   items?: {
     title: string;
     key: string;
@@ -18,28 +20,39 @@ export const BaseDropdown = ({
   placeholder,
   icon,
   items,
+  onSelect,
+  selected,
 }: IBaseDropdownProps) => {
   const [isActive, setIsActive] = useState<Boolean>(false);
 
   return (
-    <div className={clsx("relative flex w-full items-center gap-2", className)}>
+    <div
+      className={clsx(
+        "relative flex w-full cursor-pointer items-center gap-2",
+        className,
+      )}
+      onClick={() => setIsActive((prev) => !prev)}
+    >
       {icon && icon}
-      <div
-        className="flex w-full cursor-pointer items-center justify-between gap-2"
-        onClick={() => setIsActive((prev) => !prev)}
-      >
-        <span className="whitespace-nowrap">{placeholder}</span>
+      <div className="flex w-full items-center justify-between gap-2">
+        <span className="whitespace-nowrap">
+          {/* @ts-ignore */}
+          {(!!selected &&
+            items?.find((item) => item.key === selected)?.title) ||
+            placeholder}
+        </span>
         <RiArrowDownSLine />
       </div>
       {isActive && (
         <div
-          className="absolute left-0 w-full border bg-white font-normal text-primary"
+          className="absolute left-0 z-10 max-h-[300px] w-full overflow-y-auto border bg-white font-normal text-primary"
           style={{ top: "100%" }}
         >
           {(items || [{ title: "Test", key: "test" }])?.map((item, index) => (
             <div
               key={index}
               className="cursor-pointer p-2 hover:bg-cyan hover:text-white"
+              onClick={() => onSelect(item.key)}
             >
               {item.title}
             </div>

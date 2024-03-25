@@ -29,12 +29,14 @@ export const MobileProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
   return (
     <MobileContext.Provider value={{ isMobile }}>
       {children}

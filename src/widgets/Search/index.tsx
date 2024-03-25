@@ -35,6 +35,7 @@ export const Search = () => {
             }
             placeholder="All categories"
             className="w-full text-gray-500 xl:w-[230px]"
+            onSelect={() => ""}
           />
         </div>
       </div>

@@ -5,9 +5,9 @@ import { Container } from "@/shared/ui/Container";
 import img from "@/shared/assets/images/banner-img1.png";
 import { Search } from "@/widgets/Search";
 import { Listing } from "@/entities/Listing/ui";
+import { useListingsStore } from "@/entities/Listing/model/store";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { serverApi } from "@/shared/api/serverApi";
 
 // Icons
 import { GiKnifeFork } from "react-icons/gi";
@@ -91,6 +91,12 @@ const Categories = [
 ];
 
 export default function Home() {
+  const { getListings } = useListingsStore();
+
+  useEffect(() => {
+    getListings();
+  }, []);
+
   return (
     <div>
       <div className="relative bg-gray-100 pt-[100px]">

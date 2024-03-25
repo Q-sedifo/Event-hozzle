@@ -6,6 +6,7 @@ import { BaseTextarea } from "@/shared/ui/textareas/BaseTextarea";
 import { BaseButton } from "@/shared/ui/buttons/BaseButton";
 import { BaseError } from "@/shared/ui/errors/BaseError";
 import Image from "next/image";
+import { userValidation } from "@/shared/validation/user/updateUserValidation";
 
 // Icons
 import { BsUpload } from "react-icons/bs";
@@ -34,7 +35,7 @@ export const UserForm = () => {
     <>
       <Formik
         initialValues={initialValues}
-        // validationSchema={}
+        validationSchema={userValidation}
         validateOnChange={false}
         onSubmit={handleSubmit}
       >
@@ -60,8 +61,8 @@ export const UserForm = () => {
               </div>
             </div>
             <div>
-              <BaseError error={errors.name} />
               <label className="mb-3 block text-[14px]">Your name</label>
+              <BaseError error={errors.name} />
               <BaseInput
                 className="w-full rounded bg-gray-100 p-3 font-normal"
                 onChange={(data) => setFieldValue("name", data)}
@@ -70,8 +71,8 @@ export const UserForm = () => {
             </div>
             <div className="flex flex-col items-center gap-5 sm:flex-row">
               <div className="w-full flex-1">
-                <BaseError error={errors.email} />
                 <label className="mb-3 block text-[14px]">Your email</label>
+                <BaseError error={errors.email} />
                 <BaseInput
                   className="w-full rounded bg-gray-100 p-3 font-normal"
                   onChange={(data) => setFieldValue("email", data)}
@@ -79,8 +80,8 @@ export const UserForm = () => {
                 />
               </div>
               <div className="w-full flex-1">
-                <BaseError error={errors.phone} />
                 <label className="mb-3 block text-[14px]">Your phone</label>
+                <BaseError error={errors.phone} />
                 <BaseInput
                   className="w-full rounded bg-gray-100 p-3 font-normal"
                   onChange={(data) => setFieldValue("phone", data)}
@@ -90,8 +91,8 @@ export const UserForm = () => {
             </div>
             <div className="flex flex-col items-center gap-5 sm:flex-row">
               <div className="w-full flex-1">
-                <BaseError error={errors.address} />
                 <label className="mb-3 block text-[14px]">Your address</label>
+                <BaseError error={errors.address} />
                 <BaseInput
                   className="w-full rounded bg-gray-100 p-3 font-normal"
                   onChange={(data) => setFieldValue("address", data)}
@@ -99,8 +100,8 @@ export const UserForm = () => {
                 />
               </div>
               <div className="w-full flex-1">
-                <BaseError error={errors.website} />
                 <label className="mb-3 block text-[14px]">Your website</label>
+                <BaseError error={errors.website} />
                 <BaseInput
                   className="w-full rounded bg-gray-100 p-3 font-normal"
                   onChange={(data) => setFieldValue("website", data)}
@@ -109,8 +110,8 @@ export const UserForm = () => {
               </div>
             </div>
             <div>
-              <BaseError error={errors.bio} />
               <label className="mb-3 block text-[14px]">Bio</label>
+              <BaseError error={errors.bio} />
               <BaseTextarea
                 onChange={(data) => setFieldValue("bio", data)}
                 className="h-[200px] w-full rounded bg-gray-100 p-3 font-normal"
@@ -119,8 +120,8 @@ export const UserForm = () => {
             </div>
             <div className="flex flex-col items-center gap-5 sm:flex-row">
               <div className="w-full flex-1">
-                <BaseError error={errors.facebookUrl} />
                 <label className="mb-3 block text-[14px]">Facebook URL</label>
+                <BaseError error={errors.facebookUrl} />
                 <BaseInput
                   className="w-full rounded bg-gray-100 p-3 font-normal"
                   onChange={(data) => setFieldValue("facebookUrl", data)}
@@ -128,8 +129,8 @@ export const UserForm = () => {
                 />
               </div>
               <div className="w-full flex-1">
-                <BaseError error={errors.twitterUrl} />
                 <label className="mb-3 block text-[14px]">Twitter URL</label>
+                <BaseError error={errors.twitterUrl} />
                 <BaseInput
                   className="w-full rounded bg-gray-100 p-3 font-normal"
                   onChange={(data) => setFieldValue("twitterUrl", data)}
@@ -139,8 +140,8 @@ export const UserForm = () => {
             </div>
             <div className="flex flex-col items-center gap-5 sm:flex-row">
               <div className="w-full flex-1">
-                <BaseError error={errors.linkedInUrl} />
                 <label className="mb-3 block text-[14px]">LinkedIn URL</label>
+                <BaseError error={errors.linkedInUrl} />
                 <BaseInput
                   className="w-full rounded bg-gray-100 p-3 font-normal"
                   onChange={(data) => setFieldValue("linkedInUrl", data)}
@@ -148,8 +149,8 @@ export const UserForm = () => {
                 />
               </div>
               <div className="w-full flex-1">
-                <BaseError error={errors.instagramUrl} />
                 <label className="mb-3 block text-[14px]">Instagram URL</label>
+                <BaseError error={errors.instagramUrl} />
                 <BaseInput
                   className="w-full rounded bg-gray-100 p-3 font-normal"
                   onChange={(data) => setFieldValue("instagramUrl", data)}

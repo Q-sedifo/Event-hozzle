@@ -51,7 +51,6 @@ export const RegisterForm = () => {
                 value={values.username}
               />
             </div>
-            {errors.email && touched.email && errors.email}
             <div>
               <BaseError error={errors.email} />
               <BaseInput

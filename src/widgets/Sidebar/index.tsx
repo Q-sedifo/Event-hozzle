@@ -29,18 +29,22 @@ export const SideBar = () => {
   const { isMobile } = useMobile();
 
   useEffect(() => {
-    if (isMobile) return;
+    if (isMobile) {
+      closeSidebar();
+      return;
+    }
 
     openSidebar();
-  }, [isMobile, openSidebar]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isMobile]);
 
   return isDashboard ? (
     <div
       className={clsx(
-        "fixed left-0 top-0 h-full w-[250px] -translate-x-full border-r-[8px] border-gray-100 bg-white py-5 duration-500",
+        "fixed left-0 top-0 z-50 h-full w-[250px] border-r-[8px] border-gray-100 bg-white py-5 duration-500 xl:z-[1]",
         {
-          "!translate-x-[0%]": isSidebarOpen,
-          "z-50": isMobile,
+          "translate-x-[0%]": isSidebarOpen,
+          "-translate-x-full": !isSidebarOpen,
         },
       )}
     >

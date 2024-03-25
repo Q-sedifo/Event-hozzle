@@ -4,6 +4,7 @@ import { Formik } from "formik";
 import { BaseInput } from "@/shared/ui/inputs/BaseInput";
 import { BaseButton } from "@/shared/ui/buttons/BaseButton";
 import { BaseError } from "@/shared/ui/errors/BaseError";
+import { passwordValidation } from "@/shared/validation/user/passwordValidation";
 
 const initialValues = {
   currentPassword: "lololo",
@@ -21,7 +22,7 @@ export const PasswordForm = () => {
     <>
       <Formik
         initialValues={initialValues}
-        // validationSchema={}
+        validationSchema={passwordValidation}
         validateOnChange={false}
         onSubmit={handleSubmit}
       >
@@ -29,8 +30,8 @@ export const PasswordForm = () => {
           <form onSubmit={handleSubmit} className="flex w-full flex-col gap-5">
             {isSubmitting && "Loading..."}
             <div className="w-full flex-1">
-              <BaseError error={errors.currentPassword} />
               <label className="mb-3 block text-[14px]">Password</label>
+              <BaseError error={errors.currentPassword} />
               <BaseInput
                 className="w-full rounded bg-gray-100 p-3 font-normal"
                 onChange={(data) => setFieldValue("currentPassword", data)}
@@ -39,8 +40,8 @@ export const PasswordForm = () => {
               />
             </div>
             <div className="w-full flex-1">
-              <BaseError error={errors.newPassword} />
               <label className="mb-3 block text-[14px]">New Password</label>
+              <BaseError error={errors.newPassword} />
               <BaseInput
                 className="w-full rounded bg-gray-100 p-3 font-normal"
                 onChange={(data) => setFieldValue("newPassword", data)}
@@ -49,8 +50,8 @@ export const PasswordForm = () => {
               />
             </div>
             <div className="w-full flex-1">
-              <BaseError error={errors.confirmPassword} />
               <label className="mb-3 block text-[14px]">Confirm Password</label>
+              <BaseError error={errors.confirmPassword} />
               <BaseInput
                 className="w-full rounded bg-gray-100 p-3 font-normal"
                 onChange={(data) => setFieldValue("confirmPassword", data)}

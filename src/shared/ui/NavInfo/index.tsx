@@ -12,7 +12,7 @@ export const NavInfo = ({ title }: Props) => {
   const titles = path.split("/");
 
   return (
-    <div className="mb-10 flex items-center gap-5">
+    <div className="mb-10 flex flex-wrap items-center gap-5">
       <h1 className="text-[22px] font-semibold">{title}</h1>
       <span className="flex items-center gap-3 capitalize">
         <span className="text-gray-300">|</span>

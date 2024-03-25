@@ -49,11 +49,13 @@ export const Footer = () => {
             <FormDropdown
               placeholder="English"
               className="border-none !bg-gray-200 font-bold text-cyan"
+              onSelect={() => ""}
             />
             <Title text="Countries" />
             <FormDropdown
               placeholder="United States"
               className="border-none !bg-gray-200 font-bold text-cyan"
+              onSelect={() => ""}
             />
           </div>
         </div>
