@@ -6,6 +6,10 @@ import { BaseError } from "@/shared/ui/errors/BaseError";
 import { registerSchema } from "@/shared/validation/auth/registerValidation";
 import { redirect } from "next/navigation";
 
+interface Props {
+  closeModal: () => void;
+}
+
 const initialValues = {
   username: "",
   email: "",
@@ -13,15 +17,17 @@ const initialValues = {
   passwordConfirm: "",
 };
 
-export const RegisterForm = () => {
+export const RegisterForm = ({ closeModal }: Props) => {
   const handleSubmit = async (data: any, { setSubmitting }: any) => {
     data.redirect = false;
     setSubmitting(true);
 
-    await signIn("sign-up", data).then((resp) => {
-      setSubmitting(false);
-      redirect("/");
-    });
+    const response = await signIn("sign-up", data)
+    setSubmitting(false)
+    console.log("REGISTER RESP", response)
+    if (!response?.ok) return
+    
+    closeModal();
   };
 
   return (

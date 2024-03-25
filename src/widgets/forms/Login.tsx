@@ -5,29 +5,32 @@ import { BaseButton } from "@/shared/ui/buttons/BaseButton";
 import { signIn } from "next-auth/react";
 import { BaseError } from "@/shared/ui/errors/BaseError";
 import { loginSchema } from "@/shared/validation/auth/loginValidation";
-import { redirect } from "next/navigation";
+
+interface Props {
+  closeModal: () => void;
+}
 
 const initialValues = {
   email: "",
   password: "",
 };
 
-export const LoginForm = () => {
+export const LoginForm = ({ closeModal }: Props) => {
   const [error, setError] = useState<null | string>(null);
 
   const handleSubmit = async (data: any, { setSubmitting }: any) => {
     data.redirect = false;
     setSubmitting(true);
 
-    await signIn("credentials", data)
-      .then((response) => {
-        setSubmitting(false);
-        console.log("LOGIN RESPONSE", response);
-        redirect("/");
-      })
-      .catch((error) => {
-        setError("Incorrect email or password");
-      });
+    const resp = await signIn("credentials", data)
+    setSubmitting(false);
+
+    if (!resp?.ok) {
+      setError("Incorrect email or password");
+      return
+    }
+
+    closeModal();
   };
 
   return (

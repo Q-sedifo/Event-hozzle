@@ -1,4 +1,4 @@
-import type { AuthOptions } from "next-auth";
+import type { AuthOptions, Session } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import FacebookProvider from "next-auth/providers/facebook";
 import { cookies } from "next/headers";
@@ -32,17 +32,20 @@ export const authConfig: AuthOptions = {
 
         try {
           const resp = await serverApi.post("/auth/login", credentials);
+          const userData = resp?.data
           console.log("LOGIN RESP", resp);
 
           cookies().set("_auth_access_token", resp.data.access_token);
           cookies().set("_auth_refresh_token", resp.data.refresh_token);
 
-          return resp.data as any;
+          return {  
+            name: userData?.username, 
+            email: userData?.email
+          } as any;
         } catch (error) {
           console.log("LOGIN ERROR", error);
           return false;
         }
-        // return credentials as any;
       },
     }),
     Credentials({
@@ -76,18 +79,24 @@ export const authConfig: AuthOptions = {
             "/users/create",
             credentials,
           );
-          const userData = responseReg.data;
+          console.log("REGISTER RESP", responseReg)
+          const userData = responseReg?.data;
 
           const responseLog = await serverApi.post(
             "/auth/login",
-            responseReg.data,
+            credentials
           );
+          console.log("LOGIN REG RESP", responseLog)
           const tokens = responseLog.data;
 
           cookies().set("_auth_access_token", tokens.access_token);
           cookies().set("_auth_refresh_token", tokens.refresh_token);
-          console.log("REG RESP", userData, tokens);
-          return userData;
+          // console.log("REG RESP", userData, tokens);
+          
+          return {    
+            name: userData?.username, 
+            email: userData?.email
+          } as any;
         } catch (error) {
           console.log("REGISTER ERROR", error);
           return false as any;

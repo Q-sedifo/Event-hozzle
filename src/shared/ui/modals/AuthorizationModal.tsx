@@ -66,7 +66,7 @@ export const AuthorizationModal = (props: Props) => {
             </span>
             <div className="h-[1px] flex-1 bg-gray-200"></div>
           </div>
-          {isLogin ? <LoginForm /> : <RegisterForm />}
+          {isLogin ? <LoginForm closeModal={props.close}/> : <RegisterForm closeModal={props.close}/>}
           <div className="mt-5 flex items-center gap-1 text-gray-500">
             {isLogin ? (
               <>Don&apos;t have an account? </>

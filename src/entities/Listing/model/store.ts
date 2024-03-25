@@ -11,7 +11,7 @@ export const useListingsStore = create<Store>((set, get) => ({
   listings: [],
   getListings: async () => {
     try {
-      const response = await fetch("http://localhost/api/listings", {
+      const response = await fetch("http://localhost:3000/api/listings", {
         method: "GET",
         mode: "no-cors",
       });
