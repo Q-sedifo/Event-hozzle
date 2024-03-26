@@ -1,9 +1,12 @@
 "use client";
+import React, { useEffect } from "react";
 import { Container } from "@/shared/ui/Container";
 import { Search } from "@/widgets/Search";
 import { Listing } from "@/entities/Listing/ui";
 import { BaseDropdown } from "@/shared/ui/dropdowns/BaseDropdown";
 import { Pagination } from "@/shared/ui/Pagination";
+import { useListingsStore } from "@/entities/Listing/model/store";
+import Link from "next/link";
 
 const filterItems = [
   { title: "Name", key: "name" },
@@ -11,6 +14,12 @@ const filterItems = [
 ];
 
 const Listings = () => {
+  const { listings, getListings } = useListingsStore();
+
+  useEffect(() => {
+    getListings();
+  }, [getListings])
+
   return (
     <div>
       <div className="bg-gray-100 py-[100px]">
@@ -44,8 +53,13 @@ const Listings = () => {
               </span>
             </div>
             <div className="flex flex-wrap justify-between gap-5">
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => (
-                <Listing key={index} />
+              {!listings && (
+                <div>No listings</div>
+              )}
+              {listings?.map((item: any, index: number) => (
+                <Link href={`/listings/${item.id}`}>
+                  <Listing item={item} key={item.id + index} />
+                </Link>
               ))}
             </div>
             <div className="mt-10 flex items-center justify-center">

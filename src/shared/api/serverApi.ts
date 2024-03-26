@@ -3,8 +3,12 @@ import Cookies from "js-cookie";
 
 const serverApi = axios.create({
   baseURL: process.env.NEXT_PUBLIC_SERVER_API,
-  headers: { "Content-Type": "application/json", Accept: "application/json" },
-  withCredentials: true,
+  headers: { 
+    "Content-Type": "application/json", 
+    Accept: "application/json",
+    "Access-Control-Allow-Origin": "*"
+  },
+  withCredentials: false,
 });
 
 serverApi.interceptors.request.use(

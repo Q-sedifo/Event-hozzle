@@ -7,6 +7,7 @@ import { Search } from "@/widgets/Search";
 import { Listing } from "@/entities/Listing/ui";
 import { useListingsStore } from "@/entities/Listing/model/store";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Link from 'next/link';
 import "swiper/css";
 
 // Icons
@@ -91,11 +92,11 @@ const Categories = [
 ];
 
 export default function Home() {
-  const { getListings } = useListingsStore();
+  const { listings, getListings } = useListingsStore();
 
   useEffect(() => {
     getListings();
-  }, []);
+  }, [getListings]);
 
   return (
     <div>
@@ -219,8 +220,13 @@ export default function Home() {
             </p>
           </div>
           <div className="grid grid-cols-1 gap-10 py-[60px] md:grid-cols-2 lg:grid-cols-3">
-            {[1, 2, 3, 4, 5, 6].map((item, index) => (
-              <Listing key={index} />
+            {!listings && (
+              <div>No listings</div>
+            )}
+            {listings?.map((item: any, index: number) => (
+              <Link href={`/listings/${item.id}`}>
+                <Listing item={item} key={item.id + index} />
+              </Link>
             ))}
           </div>
           <div className="flex items-center justify-center">

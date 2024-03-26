@@ -1,10 +1,15 @@
+"use client"
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
+import { useListingsStore } from "@/entities/Listing/model/store";
 import { Container } from "@/shared/ui/Container";
 import { BaseButton } from "@/shared/ui/buttons/BaseButton";
 import { Estimate } from "@/shared/ui/inputs/Estimate";
 import { Progress } from "./ui/Progress";
 import { Comment } from "./ui/Comment";
 import { CommentForm } from "./ui/CommentForm";
-import { Listing } from "@/entities/Listing/ui";
+import Image from "next/image";
+// import { Listing } from "@/entities/Listing/ui";
 
 // Icons
 import { GoShareAndroid } from "react-icons/go";
@@ -29,10 +34,17 @@ const Amenities = [
   "Wheelchair Accessible",
 ];
 
-const ListingPage = () => {
-  return (
+const ListingPage = ({ params }: { params: { id: string } }) => {
+  const { listing, getListing } = useListingsStore();
+
+  useEffect(() => {
+    getListing(params?.id);
+  }, [getListing])
+
+  return listing ? (
     <div>
-      <div className="bg-gray-200">
+      <div className="relative bg-gray-200">
+        <Image src={`http://localhost/api/${listing?.images?.[0]}`} className="absolute w-full h-full left-0 top-0" alt="Image" width={100} height={100}/>
         <Container>
           <div className="flex h-fit flex-col justify-between py-10 md:h-[392px]">
             <div className="flex items-center justify-end">
@@ -134,10 +146,14 @@ const ListingPage = () => {
                   Gallery
                 </h3>
                 <div className="flex flex-wrap items-center justify-center gap-5 py-5 md:justify-between">
-                  {[1, 2, 3].map((item, index) => (
-                    <div
+                  {listing?.images?.map((image: string, index: number) => (
+                    <Image
                       key={index}
-                      className="h-[150px] w-[230px] min-w-[230px] bg-cyan"
+                      src={`http://localhost/api/${image}`}
+                      className="h-[150px] w-[230px] min-w-[230px]"
+                      alt="Image"
+                      width={100}
+                      height={100}
                     />
                   ))}
                 </div>
@@ -220,9 +236,9 @@ const ListingPage = () => {
                   Other Nearby Services
                 </h3>
                 <div className="flex flex-col items-center gap-10 py-5 md:flex-row">
-                  {[1, 2].map((item, index) => (
+                  {/* {[1, 2].map((item, index) => (
                     <Listing key={index} />
-                  ))}
+                  ))} */}
                 </div>
               </section>
             </div>
@@ -297,7 +313,7 @@ const ListingPage = () => {
         </Container>
       </div>
     </div>
-  );
+  ) : <div>Loading...</div>;
 };
 
 export default ListingPage;

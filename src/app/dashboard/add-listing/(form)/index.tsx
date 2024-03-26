@@ -109,8 +109,8 @@ const cities: any = [
 ];
 
 const timeItems: any = [
-  { title: "Opening Time", key: "opening time" },
-  { title: "Closed", key: "closed" },
+  // { title: "Opening Time", key: "opening time" },
+  // { title: "Closed", key: "closed" },
   ...generateHoursIso(),
 ];
 
@@ -507,6 +507,7 @@ export const ListingForm = ({ onSubmit }: Props) => {
                     Monday
                   </div>
                   <div className="flex-1">
+                    <BaseError error={errors?.monday?.opening} />
                     <BaseDropdown
                       className="w-full rounded bg-gray-100 p-3 font-normal"
                       placeholder="Opening time"
@@ -516,6 +517,7 @@ export const ListingForm = ({ onSubmit }: Props) => {
                     />
                   </div>
                   <div className="flex-1">
+                    <BaseError error={errors?.monday?.closing} />
                     <BaseDropdown
                       className="w-full rounded bg-gray-100 p-3 font-normal"
                       placeholder="Closing time"
@@ -530,6 +532,7 @@ export const ListingForm = ({ onSubmit }: Props) => {
                     Tuesday
                   </div>
                   <div className="flex-1">
+                    <BaseError error={errors?.tuesday?.opening} />
                     <BaseDropdown
                       className="w-full rounded bg-gray-100 p-3 font-normal"
                       onSelect={(data) =>
@@ -541,6 +544,7 @@ export const ListingForm = ({ onSubmit }: Props) => {
                     />
                   </div>
                   <div className="flex-1">
+                    <BaseError error={errors?.tuesday?.closing} />
                     <BaseDropdown
                       className="w-full rounded bg-gray-100 p-3 font-normal"
                       onSelect={(data) =>
@@ -557,6 +561,7 @@ export const ListingForm = ({ onSubmit }: Props) => {
                     Wednesday
                   </div>
                   <div className="flex-1">
+                    <BaseError error={errors?.wednesday?.opening} />
                     <BaseDropdown
                       className="w-full rounded bg-gray-100 p-3 font-normal"
                       onSelect={(data) =>
@@ -568,12 +573,13 @@ export const ListingForm = ({ onSubmit }: Props) => {
                     />
                   </div>
                   <div className="flex-1">
+                    <BaseError error={errors?.wednesday?.closing} />
                     <BaseDropdown
                       className="w-full rounded bg-gray-100 p-3 font-normal"
                       onSelect={(data) =>
-                        setFieldValue("wednesday.opening", data)
+                        setFieldValue("wednesday.closing", data)
                       }
-                      selected={values.wednesday.opening}
+                      selected={values.wednesday.closing}
                       items={timeItems}
                       placeholder="Closing time"
                     />
@@ -584,6 +590,7 @@ export const ListingForm = ({ onSubmit }: Props) => {
                     Thursday
                   </div>
                   <div className="flex-1">
+                    <BaseError error={errors?.thursday?.opening} />
                     <BaseDropdown
                       className="w-full rounded bg-gray-100 p-3 font-normal"
                       onSelect={(data) =>
@@ -595,6 +602,7 @@ export const ListingForm = ({ onSubmit }: Props) => {
                     />
                   </div>
                   <div className="flex-1">
+                    <BaseError error={errors?.thursday?.closing} />
                     <BaseDropdown
                       className="w-full rounded bg-gray-100 p-3 font-normal"
                       onSelect={(data) =>
@@ -611,6 +619,7 @@ export const ListingForm = ({ onSubmit }: Props) => {
                     Friday
                   </div>
                   <div className="flex-1">
+                    <BaseError error={errors?.friday?.opening} />
                     <BaseDropdown
                       className="w-full rounded bg-gray-100 p-3 font-normal"
                       onSelect={(data) => setFieldValue("friday.opening", data)}
@@ -620,6 +629,7 @@ export const ListingForm = ({ onSubmit }: Props) => {
                     />
                   </div>
                   <div className="flex-1">
+                    <BaseError error={errors?.friday?.closing} />
                     <BaseDropdown
                       className="w-full rounded bg-gray-100 p-3 font-normal"
                       onSelect={(data) => setFieldValue("friday.closing", data)}
@@ -634,6 +644,7 @@ export const ListingForm = ({ onSubmit }: Props) => {
                     Saturday
                   </div>
                   <div className="flex-1">
+                    <BaseError error={errors?.saturday?.opening} />
                     <BaseDropdown
                       className="w-full rounded bg-gray-100 p-3 font-normal"
                       onSelect={(data) =>
@@ -645,6 +656,7 @@ export const ListingForm = ({ onSubmit }: Props) => {
                     />
                   </div>
                   <div className="flex-1">
+                    <BaseError error={errors?.saturday?.closing} />
                     <BaseDropdown
                       className="w-full rounded bg-gray-100 p-3 font-normal"
                       onSelect={(data) =>
@@ -661,6 +673,7 @@ export const ListingForm = ({ onSubmit }: Props) => {
                     Sunday
                   </div>
                   <div className="flex-1">
+                    <BaseError error={errors?.sunday?.opening} />
                     <BaseDropdown
                       className="w-full rounded bg-gray-100 p-3 font-normal"
                       onSelect={(data) => setFieldValue("sunday.opening", data)}
@@ -670,6 +683,7 @@ export const ListingForm = ({ onSubmit }: Props) => {
                     />
                   </div>
                   <div className="flex-1">
+                    <BaseError error={errors?.sunday?.closing} />
                     <BaseDropdown
                       className="w-full rounded bg-gray-100 p-3 font-normal"
                       onSelect={(data) => setFieldValue("sunday.closing", data)}

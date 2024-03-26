@@ -9,7 +9,7 @@ export const listingValidation = object({
   city: string().required("City is required"),
   address: string().required("Address is required").max(30, "Too long address"),
   state: string().required("State is required").max(30, "Too long value"),
-  zip_code: string().required("Zip code is required").max(50, "Too long value"),
+  zip_code: string().required("Zip code is required").min(5, "Zip code must contain 5 characters").max(5, "Zip code must contain 5 characters"),
   description: string()
     .required("Description is required")
     .max(500, "Too long description"),
@@ -34,4 +34,32 @@ export const listingValidation = object({
   friendly_workspace: boolean(),
   price: string().required("Price is required").max(20, "Invalid price"),
   images: array().of(mixed()).min(1, "Please upload image"),
+  monday: object().shape({
+    opening: string().required("Please select date of opening"), 
+    closing: string().required("Please select date of closing"), 
+  }),
+  tuesday: object().shape({
+    opening: string().required("Please select date of opening"), 
+    closing: string().required("Please select date of closing"), 
+  }),
+  wednesday: object().shape({
+    opening: string().required("Please select date of opening"), 
+    closing: string().required("Please select date of closing"), 
+  }),
+  thursday: object().shape({
+    opening: string().required("Please select date of opening"), 
+    closing: string().required("Please select date of closing"), 
+  }),
+  friday: object().shape({
+    opening: string().required("Please select date of opening"), 
+    closing: string().required("Please select date of closing"), 
+  }),
+  saturday: object().shape({
+    opening: string().required("Please select date of opening"), 
+    closing: string().required("Please select date of closing"), 
+  }),
+  sunday: object().shape({
+    opening: string().required("Please select date of opening"), 
+    closing: string().required("Please select date of closing"), 
+  }),
 });
