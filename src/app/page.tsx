@@ -224,8 +224,8 @@ export default function Home() {
               <div>No listings</div>
             )}
             {listings?.map((item: any, index: number) => (
-              <Link href={`/listings/${item.id}`}>
-                <Listing item={item} key={item.id + index} />
+              <Link href={`/listings/${item.id}`} key={item.id + index}>
+                <Listing item={item} />
               </Link>
             ))}
           </div>

@@ -8,18 +8,19 @@ const AddListing = () => {
   const [success, setSuccess] = useState<null | string>(null);
   const { addListing } = useListingsStore();
 
-  const handleSubmit = async (values: any) => {
+  const handleSubmit = async (values: any, { resetForm }: any) => {
     addListing(values).then(() => {
       setSuccess("Listing created successfully")
+      resetForm();
     });
   };
 
   return (
     <div>
       <NavInfo title="Add Listing" />
-      <ListingForm onSubmit={handleSubmit} />
+      <ListingForm onSubmit={handleSubmit} success={success}/>
       {success && (
-        <div className="p-5 test-white bg-green-400 font-bold rounded-lg">
+        <div className="mt-5 rounded-lg bg-green-400 p-5 font-bold text-white">
           {success}
         </div>
       )}

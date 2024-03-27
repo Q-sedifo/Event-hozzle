@@ -47,7 +47,7 @@ export const useListingsStore = create<Store>((set, get) => ({
       });
 
       for (const key in listing) {
-        if (listing.hasOwnProperty(key)) {
+        if (Object.hasOwn(listing, key)) {
           if (typeof listing[key] === "string") {
             formData.append(key, listing[key] || null);
           }
@@ -59,7 +59,7 @@ export const useListingsStore = create<Store>((set, get) => ({
 
       const weekDays = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
       for (const key in listing) {
-        if (listing.hasOwnProperty(key) && weekDays.includes(key)) {
+        if (Object.hasOwn(listing, key) && weekDays.includes(key)) {
           formData.append(`${key}.opening`, listing[key].opening);
           formData.append(`${key}.closing`, listing[key].closing);
         }
@@ -67,13 +67,13 @@ export const useListingsStore = create<Store>((set, get) => ({
 
       const options = ["instagram", "price_range", "booking_form"]
       for (const key in listing) {
-        if (listing.hasOwnProperty(key) && options.includes(key)) {
+        if (Object.hasOwn(listing, key) && options.includes(key)) {
           formData.append(`options.${key}`, listing[key]);
         }
       }
 
       for (const key in listing.urls) {
-        if (listing.urls.hasOwnProperty(key)) {
+        if (Object.hasOwn(listing.urls, key)) {
           formData.append(`urls.${key}`, listing.urls[key] || null);
         }
       }

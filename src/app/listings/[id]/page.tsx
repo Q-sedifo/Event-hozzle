@@ -1,6 +1,5 @@
-"use client"
+"use client";
 import React, { useEffect } from "react";
-import { useRouter } from "next/router";
 import { useListingsStore } from "@/entities/Listing/model/store";
 import { Container } from "@/shared/ui/Container";
 import { BaseButton } from "@/shared/ui/buttons/BaseButton";
@@ -9,7 +8,6 @@ import { Progress } from "./ui/Progress";
 import { Comment } from "./ui/Comment";
 import { CommentForm } from "./ui/CommentForm";
 import Image from "next/image";
-// import { Listing } from "@/entities/Listing/ui";
 
 // Icons
 import { GoShareAndroid } from "react-icons/go";
@@ -34,17 +32,34 @@ const Amenities = [
   "Wheelchair Accessible",
 ];
 
+const daysOfWeek = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
 const ListingPage = ({ params }: { params: { id: string } }) => {
   const { listing, getListing } = useListingsStore();
 
   useEffect(() => {
     getListing(params?.id);
-  }, [getListing])
+  }, [params?.id, getListing]);
+
+  const dayOfWeek = new Date().getDay();
+  const dayOfWeekName = daysOfWeek[dayOfWeek].toLocaleLowerCase();
 
   return listing ? (
     <div>
-      <div className="relative bg-gray-200">
-        <Image src={`http://localhost/api/${listing?.images?.[0]}`} className="absolute w-full h-full left-0 top-0" alt="Image" width={100} height={100}/>
+      <div
+        className="relative bg-gray-200 bg-cover bg-center"
+        style={{
+          backgroundImage: `url("http://localhost/api/${listing?.images?.[0]}"`,
+        }}
+      >
         <Container>
           <div className="flex h-fit flex-col justify-between py-10 md:h-[392px]">
             <div className="flex items-center justify-end">
@@ -61,20 +76,22 @@ const ListingPage = ({ params }: { params: { id: string } }) => {
             </div>
             <div className="flex flex-col gap-5">
               <h2 className="text-[20px] font-extrabold text-white md:text-[35px]">
-                Chipotle Mexican Grill
+                {listing?.title}
               </h2>
               <div className="flex items-center gap-2">
                 <Estimate />
                 <span className="text-[15px] font-bold text-cyan">(45)</span>
               </div>
               <div className="flex flex-wrap items-center gap-5">
-                <BaseButton
-                  text="(+212) 279-1456"
-                  type="button"
-                  variant="rounded"
-                  className="w-full !bg-cyan text-[18px] !font-bold !text-white md:w-fit"
-                  icon={<PiPhoneCallBold className="h-[25px] w-[25px]" />}
-                />
+                {JSON.parse(listing?.phone) && (
+                  <BaseButton
+                    text="(+212) 279-1456"
+                    type="button"
+                    variant="rounded"
+                    className="w-full !bg-cyan text-[18px] !font-bold !text-white md:w-fit"
+                    icon={<PiPhoneCallBold className="h-[25px] w-[25px]" />}
+                  />
+                )}
                 <span className="flex items-center gap-2">
                   <MdOutlineAccessTime className="h-[48px] w-[48px] text-gray-300" />
                   <span className="flex flex-col justify-between">
@@ -82,7 +99,10 @@ const ListingPage = ({ params }: { params: { id: string } }) => {
                       Currently Open
                     </span>
                     <span className="text-[13px] text-cyan md:text-[15px]">
-                      08:00 AM - 10:00 PM
+                      {new Date(listing[dayOfWeekName + "_opening"]).getHours()}
+                      :00 AM -
+                      {new Date(listing[dayOfWeekName + "_closing"]).getHours()}
+                      :00 PM
                     </span>
                   </span>
                 </span>
@@ -92,7 +112,9 @@ const ListingPage = ({ params }: { params: { id: string } }) => {
                     <span className="text-[17px] font-bold text-white">
                       Location
                     </span>
-                    <span className="text-[15px] text-cyan">New York, USA</span>
+                    <span className="text-[15px] text-cyan">
+                      {listing?.address}
+                    </span>
                   </span>
                 </span>
               </div>
@@ -106,24 +128,10 @@ const ListingPage = ({ params }: { params: { id: string } }) => {
             <div className="flex-1">
               <section>
                 <h3 className="text-[18px] font-bold text-primary md:text-[22px]">
-                  Chipotle Mexican Grill
+                  {listing?.title}
                 </h3>
                 <p className="py-5 text-[13px] md:text-[15px]">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                  maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit
-                  amet, consectetur adipiscing elit, sed do eiusmod tempor
-                  incididunt ut labore et dolore magna aliqua. Quis ipsum
-                  suspendisse ultrices gravida. Risus commodo viverra maecenas
-                  accumsan lacus vel facilisis. Lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                  ut labore et dolore magna aliqua. Quis ipsum suspendisse
-                  ultrices gravida. Risus commodo viverra maecenas accumsan
-                  lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Quis ipsum suspendisse ultrices gravida.
+                  {listing?.description}
                 </p>
               </section>
               <section>
@@ -258,11 +266,11 @@ const ListingPage = ({ params }: { params: { id: string } }) => {
                 </h3>
                 <div className="flex items-center gap-3 border-b border-t py-2">
                   <TbWorld className="h-[20px] w-[20px]" />
-                  <span className="text-cyan">www.indice.com</span>
+                  <span className="text-cyan">{JSON.parse(listing?.website) || "-"}</span>
                 </div>
                 <div className="flex items-center gap-3 border-b border-t py-2">
                   <PiPhoneCallBold className="h-[20px] w-[20px]" />
-                  <span>(+212) 279-1456</span>
+                  <span>{JSON.parse(listing?.phone) || "-"}</span>
                 </div>
                 <div className="flex items-center gap-3 border-b border-t py-2">
                   <IoTrailSignOutline className="h-[20px] w-[20px]" />
@@ -270,7 +278,7 @@ const ListingPage = ({ params }: { params: { id: string } }) => {
                 </div>
                 <div className="flex items-center gap-3 border-b border-t py-2">
                   <GrLocation className="h-[20px] w-[20px]" />
-                  <span>New York, USA</span>
+                  <span>{listing?.address}</span>
                 </div>
               </div>
               <div className="rounded border bg-gray-100 p-5">
@@ -313,7 +321,9 @@ const ListingPage = ({ params }: { params: { id: string } }) => {
         </Container>
       </div>
     </div>
-  ) : <div>Loading...</div>;
+  ) : (
+    <div>Loading...</div>
+  );
 };
 
 export default ListingPage;

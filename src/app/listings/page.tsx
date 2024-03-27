@@ -57,8 +57,8 @@ const Listings = () => {
                 <div>No listings</div>
               )}
               {listings?.map((item: any, index: number) => (
-                <Link href={`/listings/${item.id}`}>
-                  <Listing item={item} key={item.id + index} />
+                <Link key={item.id + index} href={`/listings/${item.id}`}>
+                  <Listing item={item} />
                 </Link>
               ))}
             </div>

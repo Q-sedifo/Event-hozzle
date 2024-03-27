@@ -29,7 +29,8 @@ import { IoPricetagOutline } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
 
 interface Props {
-  onSubmit: (values: any) => void;
+  onSubmit: any;
+  success: null | string;
 }
 
 const initialValues = {
@@ -109,12 +110,10 @@ const cities: any = [
 ];
 
 const timeItems: any = [
-  // { title: "Opening Time", key: "opening time" },
-  // { title: "Closed", key: "closed" },
   ...generateHoursIso(),
 ];
 
-export const ListingForm = ({ onSubmit }: Props) => {
+export const ListingForm = ({ onSubmit, success }: Props) => {
   const [images, setImages] = useState<any>([]);
   const [previews, setPreviews] = useState<any>([]);
 
@@ -147,6 +146,12 @@ export const ListingForm = ({ onSubmit }: Props) => {
       reader.readAsDataURL(image);
     });
   }, [images]);
+
+  useEffect(() => {
+    if (!success) return
+
+    setPreviews(() => [])
+  }, [success])
 
   return (
     <>
