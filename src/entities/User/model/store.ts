@@ -15,6 +15,8 @@ export const useUserStore = create<Store>((set, get) => ({
     try {
       const formData = new FormData();
 
+      formData.append("avatar", user.image);
+
       for (const key in user) {
         if (Object.hasOwn(user, key)) {
           formData.append(key, user[key]);
