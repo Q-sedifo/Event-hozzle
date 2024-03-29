@@ -1,18 +1,21 @@
 import { create } from "zustand";
 import { serverApi } from "@/shared/api/serverApi";
-import { AxiosResponse } from "axios";
 
 interface Store {
   listings: any;
   listing: any;
+  listingComments: any;
   getListings: () => void;
+  getListingComments: (id: string) => void;
   getListing: (id: string) => void;
   addListing: (data: any) => Promise<any>;
+  addListingComment: (values: any, id: string) => Promise<any>;
 }
 
 export const useListingsStore = create<Store>((set, get) => ({
   listings: [],
   listing: null,
+  listingComments: [],
   getListings: async () => {
     try {
       const response = await serverApi.get("/listings");
@@ -28,11 +31,21 @@ export const useListingsStore = create<Store>((set, get) => ({
     try {
       const response = await serverApi.get(`/listings/${id}`);
       const listing = response.data
-      console.log("LISTINGS RESPONSE", listing);
 
       set((state) => ({ ...state, listing: listing }))
     } catch (error) {
       console.log("ERROR FETCHING LISTING", error);
+    }
+  },
+  getListingComments: async (id) => {
+    try {
+      const response = await serverApi.get(`/listings/${id}/comments`);
+      const comments = response.data
+      console.log("COMMENTS RESPONSE", comments)
+
+      set(state => ({ ...state, listingComments: comments }))
+    } catch (error) {
+      console.log("ERROR FETCHING COMMENTS", error)
     }
   },
   addListing: async (listing) => {
@@ -89,4 +102,17 @@ export const useListingsStore = create<Store>((set, get) => ({
       console.log("POST LISTING ERROR", error);
     }
   },
+  addListingComment: async (values, id) => {
+    try { 
+      const { saveData, ...newValues } = values
+
+      const response = await serverApi.post(`/listings/${id}/comments`, newValues)
+      const newComment = response.data
+      console.log("ADD COMMENT RESPONSE", newComment)
+
+      set(state => ({ ...state, listingComments: [...state.listingComments, newComment] }))
+    } catch (error) {
+      console.log("ERROR ADDING COMMENT")
+    }
+  }
 }));

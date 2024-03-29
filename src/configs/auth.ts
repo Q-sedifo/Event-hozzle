@@ -33,15 +33,11 @@ export const authConfig: AuthOptions = {
         try {
           const resp = await serverApi.post("/auth/login", credentials);
           const userData = resp?.data
-          console.log("LOGIN RESP", resp);
 
           cookies().set("_auth_access_token", resp.data.access_token);
           cookies().set("_auth_refresh_token", resp.data.refresh_token);
 
-          return {  
-            name: userData?.username, 
-            email: userData?.email
-          } as any;
+          return { ...userData }
         } catch (error) {
           console.log("LOGIN ERROR", error);
           return false;
@@ -91,12 +87,8 @@ export const authConfig: AuthOptions = {
 
           cookies().set("_auth_access_token", tokens.access_token);
           cookies().set("_auth_refresh_token", tokens.refresh_token);
-          // console.log("REG RESP", userData, tokens);
           
-          return {    
-            name: userData?.username, 
-            email: userData?.email
-          } as any;
+          return { ...userData } as any;
         } catch (error) {
           console.log("REGISTER ERROR", error);
           return false as any;
@@ -104,4 +96,17 @@ export const authConfig: AuthOptions = {
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user, trigger, session }) {
+      if (trigger === "update") {
+        return { ...token, ...session.user }
+      }
+
+      return { ...token, ...user }
+    },
+    async session({ session, token }) {
+      session.user = token as any;
+      return session
+    }
+  }
 };

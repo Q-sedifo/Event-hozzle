@@ -15,7 +15,7 @@ export const Listing = ({ item }: Props) => {
   return (
     <div className="w-full min-w-fit overflow-hidden rounded border border-cyan bg-white shadow-[5px_5px_0px_0px_#82e0e0] duration-500 hover:shadow-[5px_5px_0px_0px_#0ec6c6] md:w-[350px]">
       <div className="relative h-[230px] bg-gray-200">
-        <Image src={`http://localhost/api/${item?.images?.[0]}`} width={100} height={100} alt="image" className="absolute left-0 top-0 h-full w-full"/>
+        <Image src={`${process.env.NEXT_PUBLIC_SERVER_API}/${item?.images?.[0]}`} width={100} height={100} alt="image" className="absolute left-0 top-0 h-full w-full"/>
         <span className="absolute left-3 top-3 cursor-pointer rounded-full bg-black/50 p-2 text-white duration-500 hover:bg-cyan">
           <IoRestaurantOutline className="h-[20px] w-[20px]" />
         </span>

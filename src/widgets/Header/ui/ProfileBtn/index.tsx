@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { signOut } from "next-auth/react";
-import { RiArrowDownSLine } from "react-icons/ri";
 import Cookies from "js-cookie";
+
+// Icons
+import { RiArrowDownSLine } from "react-icons/ri";
+import { FaUser } from "react-icons/fa";
 
 interface Props {
   session: any;
@@ -33,7 +36,18 @@ export const ProfileBtn = ({ session }: Props) => {
 
   return (
     <div className="relative hidden w-fit cursor-pointer items-center gap-2 2xl:flex">
-      <div className="rounded-full bg-cyan p-5" />
+      <div className="relative flex items-center justify-center overflow-hidden rounded-full bg-cyan p-5">
+        {session?.data?.user?.avatar != "null" ? (
+          <div
+            className="absolute h-full w-full bg-blue-500 bg-cover bg-center"
+            style={{
+              backgroundImage: `url("${process.env.NEXT_PUBLIC_SERVER_API}/${session?.data?.user?.avatar}"`,
+            }}
+          />
+        ) : (
+          <FaUser className="absolute h-[20px] w-[20px] text-white" />
+        )}
+      </div>
       <span
         className="flex items-center gap-2 whitespace-nowrap text-gray-500 duration-500 hover:text-cyan"
         onClick={() => setIsOpen((prev) => !prev)}
@@ -46,7 +60,7 @@ export const ProfileBtn = ({ session }: Props) => {
           <div className="flex flex-col items-center justify-center gap-3 p-5">
             <span className="rounded-full bg-cyan p-10" />
             <span className="whitespace-nowrap text-[17px] font-semibold text-primary">
-              {session?.data?.user?.name || "Andy Smith"}
+              {session?.data?.user?.username || "Andy Smith"}
             </span>
             <span className="whitespace-nowrap text-[14px] text-gray-500">
               {session?.data?.user?.email}

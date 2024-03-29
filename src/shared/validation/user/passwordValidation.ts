@@ -1,7 +1,7 @@
 import { object, string, ref } from "yup";
 
 export const passwordValidation = object({
-  currentPassword: string()
+  oldPassword: string()
     .required("Password is required")
     .max(20, "Too long password"),
   newPassword: string()
@@ -9,5 +9,5 @@ export const passwordValidation = object({
     .max(50, "Too long password"),
   confirmPassword: string()
     .required("Please confirm your password")
-    .oneOf([ref("password")], "Passwords must match"),
+    .oneOf([ref("newPassword")], "Passwords must match"),
 });

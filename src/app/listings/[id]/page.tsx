@@ -7,6 +7,8 @@ import { Estimate } from "@/shared/ui/inputs/Estimate";
 import { Progress } from "./ui/Progress";
 import { Comment } from "./ui/Comment";
 import { CommentForm } from "./ui/CommentForm";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 import Image from "next/image";
 
 // Icons
@@ -32,6 +34,15 @@ const Amenities = [
   "Wheelchair Accessible",
 ];
 
+const progressAmenities = [
+  { title: "Cleanliness", rate: 80  },
+  { title: "Accuracy", rate: 90  },
+  { title: "Location", rate: 80  },
+  { title: "Check-in", rate: 80  },
+  { title: "Communication", rate: 70  },
+  { title: "Value", rate: 60  },
+]
+
 const daysOfWeek = [
   "Sunday",
   "Monday",
@@ -43,11 +54,19 @@ const daysOfWeek = [
 ];
 
 const ListingPage = ({ params }: { params: { id: string } }) => {
-  const { listing, getListing } = useListingsStore();
+  const session = useSession();
+  const { listing, listingComments, getListing, getListingComments, addListingComment } =
+    useListingsStore();
 
   useEffect(() => {
     getListing(params?.id);
-  }, [params?.id, getListing]);
+    getListingComments(params?.id);
+  }, [params?.id, getListing, getListingComments]);
+
+  const handleAddCommentSubmit = (values: any, { resetForm }: any) => {
+    addListingComment(values, params?.id);
+    resetForm();
+  };
 
   const dayOfWeek = new Date().getDay();
   const dayOfWeekName = daysOfWeek[dayOfWeek].toLocaleLowerCase();
@@ -57,7 +76,7 @@ const ListingPage = ({ params }: { params: { id: string } }) => {
       <div
         className="relative bg-gray-200 bg-cover bg-center"
         style={{
-          backgroundImage: `url("http://localhost/api/${listing?.images?.[0]}"`,
+          backgroundImage: `url("${process.env.NEXT_PUBLIC_SERVER_API}/${listing?.images?.[0]}"`,
         }}
       >
         <Container>
@@ -79,7 +98,7 @@ const ListingPage = ({ params }: { params: { id: string } }) => {
                 {listing?.title}
               </h2>
               <div className="flex items-center gap-2">
-                <Estimate />
+                <Estimate rate={4}/>
                 <span className="text-[15px] font-bold text-cyan">(45)</span>
               </div>
               <div className="flex flex-wrap items-center gap-5">
@@ -157,7 +176,7 @@ const ListingPage = ({ params }: { params: { id: string } }) => {
                   {listing?.images?.map((image: string, index: number) => (
                     <Image
                       key={index}
-                      src={`http://localhost/api/${image}`}
+                      src={`${process.env.NEXT_PUBLIC_SERVER_API}/${image}`}
                       className="h-[150px] w-[230px] min-w-[230px]"
                       alt="Image"
                       width={100}
@@ -188,18 +207,21 @@ const ListingPage = ({ params }: { params: { id: string } }) => {
                 </h3>
                 <div className="bg-gray-100 p-[30px] shadow-[5px_5px_0px_0px_#dedede]">
                   <h2 className="flex items-center gap-2 text-[15px] font-semibold md:text-[20px]">
-                    <Estimate />
-                    5.0 <span className="text-cyan">(5 reviews)</span>
+                    <Estimate rate={4}/>
+                    5.0 
+                    <span className="text-cyan">
+                      ({listingComments?.length} {listingComments.length <= 1 ? "review" : "review"})
+                    </span>
                   </h2>
                   <div className="grid grid-cols-1 gap-x-10 gap-y-3 pt-5 md:grid-cols-2">
-                    {[1, 2, 3, 4, 5, 6].map((item, index) => (
+                    {progressAmenities?.map((item, index) => (
                       <div
                         key={index}
                         className="flex w-full items-center justify-between text-[14px] font-semibold"
                       >
-                        TEST
+                        {item.title}
                         <span className="flex w-full items-center justify-end gap-4">
-                          <Progress progress={80} />
+                          <Progress progress={item?.rate} />
                           4.0
                         </span>
                       </div>
@@ -220,11 +242,13 @@ const ListingPage = ({ params }: { params: { id: string } }) => {
                   </button>
                 </div>
                 <div className="mt-10 flex flex-col gap-5">
-                  {[1, 2, 3].map((item, index) => (
+                  {!listingComments?.length && (
+                    <div className="text-center">No comments</div>
+                  )}
+                  {listingComments?.map((item: any, index: number) => (
                     <Comment
                       key={index}
-                      text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo maecenas accumsan lacus vel facilisis."
-                      estimate="4.5"
+                      item={item}
                     />
                   ))}
                 </div>
@@ -232,21 +256,16 @@ const ListingPage = ({ params }: { params: { id: string } }) => {
                   <h3 className="mb-5 text-[18px] font-bold text-primary md:text-[22px]">
                     Add A Review
                   </h3>
+                  {!session?.data?.user && (
+                    <div className="my-5 rounded bg-amber-300 p-5 font-bold text-white">
+                      Please log in to add comment
+                    </div>
+                  )}
                   <p>
                     Your email address will not be published. Required fields
                     are marked *
                   </p>
-                  <CommentForm />
-                </div>
-              </section>
-              <section>
-                <h3 className="mt-5 text-[18px] font-bold text-primary md:text-[22px]">
-                  Other Nearby Services
-                </h3>
-                <div className="flex flex-col items-center gap-10 py-5 md:flex-row">
-                  {/* {[1, 2].map((item, index) => (
-                    <Listing key={index} />
-                  ))} */}
+                  <CommentForm onSubmit={handleAddCommentSubmit} />
                 </div>
               </section>
             </div>
@@ -266,7 +285,9 @@ const ListingPage = ({ params }: { params: { id: string } }) => {
                 </h3>
                 <div className="flex items-center gap-3 border-b border-t py-2">
                   <TbWorld className="h-[20px] w-[20px]" />
-                  <span className="text-cyan">{JSON.parse(listing?.website) || "-"}</span>
+                  <span className="text-cyan">
+                    {JSON.parse(listing?.website) || "-"}
+                  </span>
                 </div>
                 <div className="flex items-center gap-3 border-b border-t py-2">
                   <PiPhoneCallBold className="h-[20px] w-[20px]" />
@@ -301,18 +322,26 @@ const ListingPage = ({ params }: { params: { id: string } }) => {
                     View Profile
                   </span>
                   <span className="flex items-center gap-2">
-                    <span className="cursor-pointer rounded bg-gray-200 p-3 duration-500 hover:bg-cyan hover:text-white">
-                      <FaFacebookF />
-                    </span>
-                    <span className="cursor-pointer rounded bg-gray-200 p-3 duration-500 hover:bg-cyan hover:text-white">
-                      <FaTwitter />
-                    </span>
-                    <span className="cursor-pointer rounded bg-gray-200 p-3 duration-500 hover:bg-cyan hover:text-white">
-                      <FaLinkedinIn />
-                    </span>
-                    <span className="cursor-pointer rounded bg-gray-200 p-3 duration-500 hover:bg-cyan hover:text-white">
-                      <FaInstagram />
-                    </span>
+                    <Link href={listing?.facebook_url || ""}>
+                      <span className="block w-fit cursor-pointer rounded bg-gray-200 p-3 duration-500 hover:bg-cyan hover:text-white">
+                        <FaFacebookF />
+                      </span>
+                    </Link>
+                    <Link href={listing?.twitter_url || ""}>
+                      <span className="block w-fit cursor-pointer rounded bg-gray-200 p-3 duration-500 hover:bg-cyan hover:text-white">
+                        <FaTwitter />
+                      </span>
+                    </Link>
+                    <Link href={listing?.linkedin_url || ""}>
+                      <span className="block w-fit cursor-pointer rounded bg-gray-200 p-3 duration-500 hover:bg-cyan hover:text-white">
+                        <FaLinkedinIn />
+                      </span>
+                    </Link>
+                    <Link href={listing?.instagram_url || ""}>
+                      <span className="block w-fit cursor-pointer rounded bg-gray-200 p-3 duration-500 hover:bg-cyan hover:text-white">
+                        <FaInstagram />
+                      </span>
+                    </Link>
                   </span>
                 </div>
               </div>

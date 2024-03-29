@@ -6,36 +6,35 @@ import { BaseButton } from "@/shared/ui/buttons/BaseButton";
 import { BaseError } from "@/shared/ui/errors/BaseError";
 import { passwordValidation } from "@/shared/validation/user/passwordValidation";
 
+interface Props {
+  onSubmit: any;
+}
+
 const initialValues = {
-  currentPassword: "lololo",
+  oldPassword: "lololo",
   newPassword: "",
   confirmPassword: "",
 };
 
-export const PasswordForm = () => {
-  const handleSubmit = (data: any, { setSubmitting }: any) => {
-    console.log("PASSWORD DATA: ", data);
-    setSubmitting(true);
-  };
-
+export const PasswordForm = ({ onSubmit }: Props) => {
   return (
     <>
       <Formik
         initialValues={initialValues}
         validationSchema={passwordValidation}
         validateOnChange={false}
-        onSubmit={handleSubmit}
+        onSubmit={onSubmit}
       >
         {({ values, errors, setFieldValue, handleSubmit, isSubmitting }) => (
           <form onSubmit={handleSubmit} className="flex w-full flex-col gap-5">
             {isSubmitting && "Loading..."}
             <div className="w-full flex-1">
               <label className="mb-3 block text-[14px]">Password</label>
-              <BaseError error={errors.currentPassword} />
+              <BaseError error={errors.oldPassword} />
               <BaseInput
                 className="w-full rounded bg-gray-100 p-3 font-normal"
-                onChange={(data) => setFieldValue("currentPassword", data)}
-                value={values.currentPassword}
+                onChange={(data) => setFieldValue("oldPassword", data)}
+                value={values.oldPassword}
                 type="password"
               />
             </div>
@@ -64,6 +63,7 @@ export const PasswordForm = () => {
               variant="default"
               type="submit"
               className="!w-full hover:bg-blue-800"
+              disabled={isSubmitting}
             />
           </form>
         )}

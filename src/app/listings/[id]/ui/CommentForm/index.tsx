@@ -1,6 +1,5 @@
 "use client";
 import { Formik } from "formik";
-import { BaseInput } from "@/shared/ui/inputs/BaseInput";
 import { BaseTextarea } from "@/shared/ui/textareas/BaseTextarea";
 import { BaseButton } from "@/shared/ui/buttons/BaseButton";
 import { BaseError } from "@/shared/ui/errors/BaseError";
@@ -8,29 +7,27 @@ import { BaseCheckbox } from "@/shared/ui/checkboxes/BaseCheckbox";
 import { Estimate } from "@/shared/ui/inputs/Estimate";
 import { reviewSchema } from "@/shared/validation/review/addReviewValidation";
 
+interface Props {
+  onSubmit: any;
+}
+
 const initialValues = {
-  name: "",
-  email: "",
-  review: "",
+  text: "",
   saveData: false,
-  cleanliness: 0,
+  cleanlines: 0,
   accuracy: 0,
   location: 0,
-  checkIn: 0,
+  check_in: 0,
   communication: 0,
   value: 0,
 };
 
-export const CommentForm = () => {
-  const handleSubmit = (values: any) => {
-    console.log("Comment", values);
-  };
-
+export const CommentForm = ({ onSubmit }: Props) => {
   return (
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={handleSubmit}
+        onSubmit={onSubmit}
         validationSchema={reviewSchema}
         validateOnChange={false}
       >
@@ -39,11 +36,11 @@ export const CommentForm = () => {
             <div className="mt-5 grid grid-cols-1 gap-2 border-b pb-5 text-[20px] md:grid-cols-3">
               <div className="flex flex-col gap-2">
                 <span className="text-[16px] font-semibold">Cleanliness</span>
-                <BaseError error={errors.cleanliness} />
+                <BaseError error={errors.cleanlines} />
                 <Estimate
                   active={true}
-                  onChange={(value) => setFieldValue("cleanliness", value)}
-                  rate={values.cleanliness}
+                  onChange={(value) => setFieldValue("cleanlines", value)}
+                  rate={values.cleanlines}
                 />
               </div>
               <div className="flex flex-col gap-3">
@@ -66,8 +63,8 @@ export const CommentForm = () => {
                 <span className="text-[16px] font-semibold">Check-in</span>
                 <Estimate
                   active={true}
-                  onChange={(value) => setFieldValue("checkIn", value)}
-                  rate={values.checkIn}
+                  onChange={(value) => setFieldValue("check_in", value)}
+                  rate={values.check_in}
                 />
               </div>
               <div className="flex flex-col gap-3">
@@ -87,34 +84,13 @@ export const CommentForm = () => {
                 />
               </div>
             </div>
-            <div className="flex flex-col items-center gap-5 md:flex-row">
-              <div className="w-full md:flex-1">
-                <BaseError error={errors.name} />
-                <BaseInput
-                  placeholder="Name"
-                  type="text"
-                  className="w-full rounded border bg-white p-3 shadow-md"
-                  onChange={(data) => setFieldValue("name", data)}
-                  value={values.name}
-                />
-              </div>
-              <div className="w-full md:flex-1">
-                <BaseError error={errors.email} />
-                <BaseInput
-                  placeholder="Email"
-                  type="text"
-                  className="w-full rounded border bg-white p-3 shadow-md"
-                  onChange={(data) => setFieldValue("email", data)}
-                  value={values.email}
-                />
-              </div>
-            </div>
             <div>
-              <BaseError error={errors.review} />
+              <BaseError error={errors.text} />
               <BaseTextarea
                 placeholder="Your review"
                 className="h-[150px] w-full rounded border bg-white p-3 shadow-md"
-                onChange={(value) => setFieldValue("review", value)}
+                onChange={(value) => setFieldValue("text", value)}
+                value={values.text}
               />
             </div>
             <div className="flex items-center gap-4">
@@ -130,6 +106,7 @@ export const CommentForm = () => {
                 variant="rounded"
                 type="submit"
                 className="bg-cyan px-10 font-bold text-white"
+                disabled={isSubmitting}
               />
             </div>
           </form>

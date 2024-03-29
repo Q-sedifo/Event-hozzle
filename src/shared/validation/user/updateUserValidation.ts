@@ -1,7 +1,7 @@
 import { object, mixed, string } from "yup";
 
 export const userValidation = object({
-  image: mixed().required("Please upload image"),
+  image: mixed().nullable(),
   username: string().required("Name is required").max(20, "Too long name"),
   email: string().required("Email is required").max(50, "Too long email"),
   phone: string().max(30, "Too long phone number"),

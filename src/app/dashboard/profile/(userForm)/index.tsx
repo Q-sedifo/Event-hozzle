@@ -15,6 +15,7 @@ interface Props {
   onSubmit: any;
   success: boolean;
   initialValues: any;
+  userImage: string | null;
 }
 
 export const formInitialValues = {
@@ -31,13 +32,17 @@ export const formInitialValues = {
   instagram_url: "",
 };
 
-export const UserForm = ({ onSubmit, success, initialValues }: Props) => {
+export const UserForm = ({
+  onSubmit,
+  success,
+  initialValues,
+  userImage,
+}: Props) => {
   const [avatar, setAvatar] = useState<any>(null);
   const [preview, setPreview] = useState<any>(null);
 
   const handleUploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const image = e?.target?.files?.[0];
-    console.log("UPLOADED FILE: ", image);
     if (!image) return;
 
     setAvatar(image);
@@ -53,12 +58,6 @@ export const UserForm = ({ onSubmit, success, initialValues }: Props) => {
 
     reader.readAsDataURL(avatar);
   }, [avatar]);
-
-  useEffect(() => {
-    if (!success) return
-
-    setPreview(null)
-  }, [success])
 
   return (
     <>
@@ -80,7 +79,11 @@ export const UserForm = ({ onSubmit, success, initialValues }: Props) => {
                   width={300}
                   height={300}
                   className="rounded bg-purple-500"
-                  src={preview || ""}
+                  src={
+                    preview ||
+                    `${process.env.NEXT_PUBLIC_SERVER_API}/${userImage}` ||
+                    ""
+                  }
                   alt="Avatar"
                 />
                 <label

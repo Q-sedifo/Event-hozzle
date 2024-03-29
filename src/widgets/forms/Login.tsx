@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 import { Formik } from "formik";
 import { BaseInput } from "@/shared/ui/inputs/BaseInput";
@@ -5,6 +6,7 @@ import { BaseButton } from "@/shared/ui/buttons/BaseButton";
 import { signIn } from "next-auth/react";
 import { BaseError } from "@/shared/ui/errors/BaseError";
 import { loginSchema } from "@/shared/validation/auth/loginValidation";
+import { useRouter } from "next/navigation";
 
 interface Props {
   closeModal: () => void;
@@ -17,6 +19,7 @@ const initialValues = {
 
 export const LoginForm = ({ closeModal }: Props) => {
   const [error, setError] = useState<null | string>(null);
+  const router = useRouter()
 
   const handleSubmit = async (data: any, { setSubmitting }: any) => {
     data.redirect = false;
@@ -31,6 +34,7 @@ export const LoginForm = ({ closeModal }: Props) => {
     }
 
     closeModal();
+    router.push("/")
   };
 
   return (

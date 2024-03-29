@@ -1,10 +1,11 @@
+"use client"
 import { Formik } from "formik";
 import { BaseInput } from "@/shared/ui/inputs/BaseInput";
 import { BaseButton } from "@/shared/ui/buttons/BaseButton";
-import { signIn, SignInResponse } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { BaseError } from "@/shared/ui/errors/BaseError";
 import { registerSchema } from "@/shared/validation/auth/registerValidation";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface Props {
   closeModal: () => void;
@@ -18,6 +19,8 @@ const initialValues = {
 };
 
 export const RegisterForm = ({ closeModal }: Props) => {
+  const router = useRouter()
+
   const handleSubmit = async (data: any, { setSubmitting }: any) => {
     data.redirect = false;
     setSubmitting(true);
@@ -28,6 +31,7 @@ export const RegisterForm = ({ closeModal }: Props) => {
     if (!response?.ok) return
     
     closeModal();
+    router.push("/")
   };
 
   return (

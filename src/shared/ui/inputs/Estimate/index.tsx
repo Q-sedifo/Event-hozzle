@@ -20,7 +20,6 @@ export const Estimate = ({ rate = 0, active, onChange }: Props) => {
   const starsCount = [1, 2, 3, 4, 5];
 
   const handleClick = (rate: number) => {
-    console.log("RATE", rate);
     onChange && onChange(rate);
   };
 
